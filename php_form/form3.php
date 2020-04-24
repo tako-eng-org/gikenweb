@@ -31,7 +31,7 @@ if (isset($_POST['token'], $_SESSION['token']) && ($_POST['token'] === $_SESSION
     $dbh=null;
     echo "きちんとしたアクセスです";
 } else {
-    header('Location:http://localhost:8888/php_form/form1.php');exit();
+    header('Location:form1.php');exit();
 }   
 ?><!doctypehtml>
     <html>

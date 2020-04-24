@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['email'] = $email;
         $_SESSION['subject'] = $subject;
         $_SESSION['body'] = $body;
-        header('Location:http://localhost:8888/php_form/form2.php');
+        header('Location:form2.php');
         exit();
     }
 }
