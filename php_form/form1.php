@@ -1,7 +1,7 @@
 <?php
-echo "<pre>";
-var_dump($_POST);
-echo "</pre>";
+// echo "<pre>";
+// var_dump($_POST);
+// echo "</pre>";
 
 session_start();
 $errors = array();
@@ -57,9 +57,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'edit') {
     $body = $_SESSION['body'];
 }
 
-echo "<pre>";
-var_dump($errors);
-echo "</pre>";
+//echo "<pre>";
+//var_dump($errors);
+//echo "</pre>";
 
 ?>
 <!doctypehtml>
@@ -71,6 +71,7 @@ echo "</pre>";
     </head>
 
     <body>
+        <a>お問い合わせフォームをphpとMySQLで実装します。</a>
         <?php echo "<ul>";
         foreach ($errors as $value) {
             echo "<li>";
