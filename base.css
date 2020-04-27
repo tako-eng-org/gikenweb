@@ -41,7 +41,7 @@ div#header h1 a {text-decoration:none;} 	/*リンクの下線を無くす*/
 ============================================*/
 ul#menu {
     width:960px; height:50px; 	/*メインメニュー部分の幅と高さ*/
-    margin:0px 20px; 		/*上下マージン0px、左右マージン20px*/
+    padding:0px 0px 0px 15px;	/*パディング（内側余白）を指定*/
 }
 #menu li {
 	list-style-type:none;		/*リストマーカー無しにする*/
