@@ -1,4 +1,7 @@
 <?php
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
+
 session_start();
 
 //echo "<pre>";
@@ -16,16 +19,20 @@ if (isset($_POST['token'], $_SESSION['token']) && ($_POST['token'] === $_SESSION
     $subject = $_SESSION['subject'];
     $body = $_SESSION['body'];
 
+try{
     $dsn = 'mysql:dbname=contact_form;host=localhost;charset=utf8mb4';
     $user = 'root';
     $password = '';
+    var_dump(__LINE__); //**********debug
     $dbh = new PDO($dsn, $user, $password);
+    var_dump(__LINE__); //**********debug
+    var_dump(__LINE__); //**********debug
     // var_dump($dbh->errorInfo()); //PDOを使っているとき
     var_dump(__LINE__); //**********debug
     var_dump($dbh);
-
-    $dbh > query('SET NAMES utf8');
-    $dbh > setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    //$dbh > query('SET NAMES utf8');
+    $dbh > setAttribute(PDO::ATTR_EMULATE_PREPARES,
+                            false);
     $sql = 'INSERT INTO inquiries (name,email,subject,body) VALUES( ?, ?, ?, ?)';
     $stmt = $dbh > prepare($sql);
 
@@ -39,7 +46,10 @@ if (isset($_POST['token'], $_SESSION['token']) && ($_POST['token'] === $_SESSION
     $dbh=null;
     
     echo "きちんとしたアクセスです";
-
+}catch(PDOException $Exception){
+    die('接続エラー：' .$Exception->getMessage());
+    var_dump(__LINE__); //**********debug
+}
 } else {
     echo "不正なアクセス";
     header('Location:form1.php');exit();
