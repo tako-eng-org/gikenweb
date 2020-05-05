@@ -1,3 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../base.css">
+    <title>ホーム | 技研ウェブ</title>
+</head>
+
+<!-- ul要素はUnorderd Listの略で、順序を問わないリストを作成する際に使用します。 li要素はリストの各項目を表します。 -->
+
+<body>
+    <div id="pagebody">
+
+        <!-- ヘッダ -->
+        <div id="header">
+            <h1><a href="../index.html">技研ウェブ</a></h1>
+        </div>
+
+        <!-- メインメニュー -->
+        <ul id="menu">
+            <li><a href="../index.html">ホーム</a></li>
+            <li><a href="../aboutme.html">自己紹介</a></li>
+            <li><a href="../portforio.html">ポートフォリオ</a></li>
+            <li><a href="../contact.html">お問い合わせ</a></li>
+        </ul>
+
+        <!-- ***************** メインメニュー ***************** -->
+        <!-- アプリメニュー -->
 <?php
 session_start();
 if (isset($_SESSION['name'])) {
@@ -64,6 +93,13 @@ if (isset($_SESSION['name'])) {
             &&はtrueを返し、if文のブロックの内側の処理が実行されます。  -->
         <p><a href="form1.php?action=edit">入力画面へ戻る</a></p>
         
-    </body>
+        </body>
 
-    </html>
+<!-- フッタ -->
+<div id="footer">
+    <small>Copyright (c) 技研ウェブ All Rights Reserved.</small>
+</div>
+</div>
+</body>
+
+</html>

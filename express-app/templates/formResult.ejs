@@ -27,23 +27,17 @@
 
         <!-- ***************** メインメニュー ***************** -->
         <!-- アプリメニュー -->
-        <h1>結果</h1>
+        <h1>フォームから送信された値</h1>
         <table>
             <tr>
-                <th>メニュー名</th>
-                <th>説明</th>
+                <th>項目</th>
+                <th>値</th>
             </tr>
             <tr>
-                <td><%= menuName %></td>
-                <td><%= description %></td>
+                <td><%= username %></td>
+                <td><%= message %></td>
             </tr>
         </table>
-        <form action="/toriki" method="POST">
-            <!-- <input type="text" name="username" />
-            <input type="text" name="message" /> -->
-            <button type="submit">もう一回ガチャる</button>
-        </form>
-
 </body>
 
 <!-- フッタ -->
