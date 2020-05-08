@@ -6,6 +6,12 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 //const mysql = require("mysql");
 
+//
+//あくまでサーバの立ち上げにつかう。
+//routerとかは、
+//
+//
+
 const app = express();// expressアプリを生成する
 
 app.use(morgan("combined"));
