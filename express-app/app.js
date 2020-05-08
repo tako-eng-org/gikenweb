@@ -4,18 +4,20 @@ const morgan = require('morgan');
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+//const mysql = require("mysql");
 
-const app = express();
+const app = express();// expressアプリを生成する
 
 app.use(morgan("combined"));
 
-app.use("/static", express.static(path.join(__dirname, "static")));
+app.use("/static", express.static(path.join(__dirname, "static")));// フォルダの中身を公開する
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.set('views', path.join(__dirname, 'templates'));
+app.set('views', path.join(__dirname, 'templates')); // viewはtemplatesフォルダで公開する
 app.set('view engine', 'ejs');
 
+// *****************************************************************************
 app.get("/", function(req, res){
   return res.render("index", {title: "hello world"});
  });
@@ -60,6 +62,16 @@ app.post("/toriki", function(req, res){
     });
 });
 // <<トリキガチャ*****************************************************************************
+
+// >> todolist*****************************************************************************
+// const connection = mysql.createConnection({
+//  host: 'localhost',
+// user: 'root',
+//  password: '',
+//  database: 'todo_api'
+//})
+
+// << todolist *****************************************************************************
 
 const server = http.createServer(app);
 server.listen(3000);
