@@ -4,20 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../base.css">
-    <title>ホーム | 技研ウェブ</title>
+    <title>トリキガチャ結果 | 技研ウェブ</title>
 </head>
-
-<!-- ul要素はUnorderd Listの略で、順序を問わないリストを作成する際に使用します。 li要素はリストの各項目を表します。 -->
 
 <body>
     <div id="pagebody">
 
-        <!-- ヘッダ -->
+        <!-- ヘッダ(ホーム) -->
         <div id="header">
-            <h1><a href="../index.html">技研ウェブ</a></h1>
+            <h1><a href="index.html">技研ウェブ</a></h1>
         </div>
 
-        <!-- メインメニュー -->
+        <!-- メニュー -->
         <ul id="menu">
             <li><a href="../index.html">ホーム</a></li>
             <li><a href="../aboutme.html">自己紹介</a></li>
@@ -25,32 +23,31 @@
             <li><a href="../contact.html">お問い合わせ</a></li>
         </ul>
 
-        <!-- ***************** メインメニュー ***************** -->
-        <!-- アプリメニュー -->
-        <h1>結果</h1>
-        <table>
-            <tr>
-                <th>メニュー名</th>
-                <th>説明</th>
-            </tr>
-            <tr>
-                <td><%= menuName %></td>
-                <td><%= description %></td>
-            </tr>
-        </table>
-        <form action=/express/torikiResult method="POST">
-            <!-- <input type="text" name="username" />
+        <!-- コンテンツ -->
+        <div id="contents">
+            <h1>結果</h1>
+            <table>
+                <tr>
+                    <th>メニュー名</th>
+                    <th>説明</th>
+                </tr>
+                <tr>
+                    <td><%= menuName %></td>
+                    <td><%= description %></td>
+                </tr>
+            </table>
+            <form action=/express/torikiResult method="POST">
+                <!-- <input type="text" name="username" />
             <input type="text" name="message" /> -->
-            <button type="submit">もう一回ガチャる</button>
-        </form>
-
+                <button type="submit">もう一回ガチャる</button>
+            </form>
+        </div>
+    </div>
 </body>
 
 <!-- フッタ -->
 <div id="footer">
     <small>Copyright (c) 技研ウェブ All Rights Reserved.</small>
 </div>
-</div>
-</body>
 
 </html>
