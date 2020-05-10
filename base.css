@@ -17,7 +17,7 @@ body {
 div#pagebody {
     width:1000px; margin:0 auto;	/*内容全体をセンタリング*/
     background-color:whitesmoke;		/*内容全体の背景色*/
-    padding:0px 0px 0px 10px;	/*パディング*/
+    padding:0px 0px 50px 10px;	/*パディング*/
 
 }
 img {border:0;} 				/*画像のボーダーを0にする*/
