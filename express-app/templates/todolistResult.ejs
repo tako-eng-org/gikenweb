@@ -34,13 +34,10 @@
                 <th>詳細</th>
             </tr>
             <tr>
-                <td><%= todoTitle %></td>
-                <td><%= description %></td>
+                <td><%= msg %></td>
             </tr>
         </table>
-        <form action="/todolist" method="POST">
-            <!-- <input type="text" name="username" />
-            <input type="text" name="message" /> -->
+        <form action="/todolistResult" method="POST">
             <button type="submit">もう一回ポスト(あとで消す)</button>
         </form>
 
