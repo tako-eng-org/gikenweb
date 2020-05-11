@@ -6,9 +6,10 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const Sequelize = require('sequelize');
 //const mysql = require("mysql");
+const log4js = require("log4js");
 
 //
-//あくまでサーバの立ち上げにつかう。
+//app.jsはあくまでサーバの立ち上げにつかう。
 //routerとかは、
 //
 //
@@ -23,6 +24,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('views', path.join(__dirname, 'templates')); // viewはtemplatesフォルダで公開する
 app.set('view engine', 'ejs');
+
+// >>logging設定*****************************************************************************
+log4js.configure({
+  appenders: {
+    system: { type: "file", filename: "system.log" },
+  },
+  // カテゴリ→ログの種類のこと。
+  categories: {
+    default: { appenders: ["system"], level: "debug" },
+  },
+});
+const logging = log4js.getLogger("system");
+
+//test出力
+logging.debug(logging);
+// <<logging設定*****************************************************************************
+
 
 // *****************************************************************************
 app.get("/", function(req, res){
@@ -91,6 +109,10 @@ app.post("/todolistResult", function(req, res){
   let metadata = "あとで消す";
   let seq = sequelize.query("select * from test_table").spread(results, metadata);
   sequelize.close();
+
+  logging.debug(seq);
+  logging.debug(results);
+  logging.debug(metadata);
 
   return res.render("todolistResult", {msg: results});
 });
