@@ -97,13 +97,13 @@ return res.render("todolist");
 // 結果
 app.post("/todolistResult", function(req, res){
 
-  const Sequelize = require('sequelize');
+//   const Sequelize = require('sequelize');
 
-// Option 1: Passing parameters separately
-const sequelize = new Sequelize('database', 'username', 'password', {
-  host: 'localhost',
-  dialect: /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
-});
+// // Option 1: Passing parameters separately
+// const sequelize = new Sequelize('database', 'username', 'password', {
+//   host: 'localhost',
+//   dialect: /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
+// });
 
   // const sequelize = new Sequelize('NodeTest','root','',{dialect:'mysql'});
 
