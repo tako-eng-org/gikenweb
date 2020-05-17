@@ -4,10 +4,9 @@ const morgan = require('morgan');
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
-const Sequelize = require('sequelize');
 //const mysql = require("mysql");
 const log4js = require("log4js");
-
+const Sequelize = require('sequelize');
 //
 //app.jsはあくまでサーバの立ち上げにつかう。
 //routerとかは、
@@ -38,6 +37,7 @@ log4js.configure({
 const logging = log4js.getLogger("system");
 
 //test出力
+logging.debug("******************************");
 logging.debug(logging);
 // <<logging設定*****************************************************************************
 
@@ -96,7 +96,16 @@ return res.render("todolist");
 
 // 結果
 app.post("/todolistResult", function(req, res){
-  const sequelize = new Sequelize('NodeTest','root','',{dialect:'mysql'});
+
+  const Sequelize = require('sequelize');
+
+// Option 1: Passing parameters separately
+const sequelize = new Sequelize('database', 'username', 'password', {
+  host: 'localhost',
+  dialect: /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
+});
+
+  // const sequelize = new Sequelize('NodeTest','root','',{dialect:'mysql'});
 
   /*
   sequelize.query("select * from test_table").spread((results, metadata) => {
@@ -105,16 +114,20 @@ app.post("/todolistResult", function(req, res){
   });
   //*/
 
-  let results = "ここに結果を代入";
-  let metadata = "あとで消す";
-  let seq = sequelize.query("select * from test_table").spread(results, metadata);
-  sequelize.close();
+  // let results = "ここに結果を代入";
+  // let metadata = "あとで消す";
+  // sequelize.query('select * from test_table',null,{raw:true}).success(function(rows) {
+  // logging.debug(rows);
+  // });
 
-  logging.debug(seq);
-  logging.debug(results);
-  logging.debug(metadata);
+  //let seq = sequelize.query("select * from test_table").spread(results, metadata);
+  //sequelize.close();
 
-  return res.render("todolistResult", {msg: results});
+  //logging.debug(seq);
+  //logging.debug(results);
+  //logging.debug(metadata);
+
+  return res.render("todolistResult", {msg: "test"});
 });
 
 // const connection = mysql.createConnection({
