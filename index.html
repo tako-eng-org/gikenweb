@@ -2,12 +2,11 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <!-- bootstrap header -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="base.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- bootstrap start-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -27,85 +26,106 @@
 <!-- ul要素はUnorderd Listの略で、順序を問わないリストを作成する際に使用します。 li要素はリストの各項目を表します。 -->
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <!-- navbar-brand ... メインの項目 -->
-        <a class="navbar-brand" href="index.html">技研ウェブ</a>
-    
-        <!--  -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="topNavbar" class="collapse navbar-collapse">
-    
-            <!-- navbar-nav ... ナビゲーション部分 -->
-            <ul class="navbar-nav mr-auto">
-                <!-- <li class="nav-item active">
-                        <a class="nav-link" href="index.html">ホーム</a>
-                    </li> -->
-                <li class="nav-item">
-                    <a class="nav-link" href="aboutme.html">自己紹介</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="portforio.html">ポートフォリオ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">工事中</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">お問い合わせ</a>
-                </li>
-                <!-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="portforio.html" data-toggle="dropdown">Dropdown</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li> -->
-            </ul>
-            <!-- seach box -->
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="button">Search</button>
-            </form>
-        </div>
-    </nav>
+    <!-- 上に表示するようなやつ。基本的にナビゲーションバーだけかも。 -->
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <!-- navbar-brand ... メインの項目 -->
+            <a class="navbar-brand" href="index.html">技研ウェブ</a>
 
-    <div id="pagebody">
-        <!-- コンテンツ -->
-        <div id="contents">
-            <h2>新着情報</h2>
-            <ul>
-                <li><a href="#info0001">TODOリスト作成中です。</a></li>
-                <li><a href="#info0002">テスト文字列2（中略）</a></li>
-                <li><a href="#info0003">テスト文字列3（中略）</a></li>
-            </ul>
-
-            <!-- インフォメーション本文 -->
-            <br>
-            <h3 id="info0001">お問い合わせページを公開しました。2020/04/27</h3>
-            <p>
-
-                TODOリスト作成中です。
-
-            </p>
-            <br>
-            <h3 id="info0002">テスト文字列2 2020/05/10</h3>
-            <p>
-                テスト文字列2 本文（中略）<br>
-            </p>
-            <br>
-            <h3 id="info0003">テスト文字列3 2020/05/10</h3>
-            <p>
-                テスト文字列3 本文（中略）
-            </p>
-        </div>
-    </div>
+            <!--  -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="topNavbar" class="collapse navbar-collapse">
+                <!-- navbar-nav ... ナビゲーション部分 -->
+                <ul class="navbar-nav mr-auto">
+                    <!-- <li class="nav-item active">
+                            <a class="nav-link" href="index.html">ホーム</a>
+                        </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutme.html">自己紹介</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="portforio.html">ポートフォリオ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">工事中</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">お問い合わせ</a>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="portforio.html" data-toggle="dropdown">Dropdown</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li> -->
+                </ul>
+                <!-- seach box -->
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" />
+                    <button class="btn btn-secondary my-2 my-sm-0" type="button">
+                        Search
+                    </button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <!-- グリッドレイアウト（bootstrapだけでなく、css周りでよく使う。container,row行,col列） -->
+            <!-- https://getbootstrap.com/docs/4.5/examples/grid/ -->
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <!-- コンテンツ -->
+                        <h2>新着情報</h2>
+                        <ul>
+                            <li><a href="#info0001">TODOリスト作成中です。</a></li>
+                            <li><a href="#info0002">テスト文字列2（中略）</a></li>
+                            <li><a href="#info0003">テスト文字列3（中略）</a></li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        TEST1
+                    </div>
+                    <div class="col">
+                        TEST2
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <!-- インフォメーション本文 -->
+                        <h2 id="info0001">
+                            お問い合わせページを公開しました。2020/04/27
+                        </h2>
+                        <p>
+                            TODOリスト作成中です。
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h2 id="info0002">テスト文字列2 2020/05/10</h2>
+                        <p>テスト文字列2 本文（中略）<br /></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h2 id="info0003">テスト文字列3 2020/05/10</h2>
+                        <p>
+                            テスト文字列3 本文（中略）
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="container">
+        <small>Copyright (c) 技研ウェブ All Rights Reserved.</small>
+    </footer>
 </body>
-
-<!-- フッタ -->
-<div id="footer">
-    <small>Copyright (c) 技研ウェブ All Rights Reserved.</small>
-</div>
 
 </html>

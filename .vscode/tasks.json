@@ -8,6 +8,15 @@
 			"problemMatcher": [],
 			"label": "npm: start - express-app",
 			"detail": "node app.js"
+		},
+		{
+			"type": "npm",
+			"script": "test",
+			"path": "express-app/",
+			"group": "test",
+			"problemMatcher": [],
+			"label": "npm: test - express-app",
+			"detail": "echo \"Error: no test specified\" && exit 1"
 		}
 	]
 }
