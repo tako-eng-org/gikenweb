@@ -2,28 +2,34 @@
 <html lang="ja">
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <!-- bootstrap header -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <!-- <link rel="stylesheet" href="../base.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../base.css"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- bootstrap start-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- bootstrap end-->
+
     <title>ホーム | 技研ウェブ</title>
 </head>
 
 <!-- ul要素はUnorderd Listの略で、順序を問わないリストを作成する際に使用します。 li要素はリストの各項目を表します。 -->
 
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <!-- navbar-brand ... メインの項目 -->
         <a class="navbar-brand" href="../index.html">技研ウェブ</a>
-    
+
         <!--  -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarsExampleDefault">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div id="navbarsExampleDefault" class="collapse navbar-collapse">
-    
+
             <!-- navbar-nav ... ナビゲーション部分 -->
             <ul class="navbar-nav mr-auto">
                 <!-- <li class="nav-item active">
@@ -131,23 +137,11 @@
         </div>
     </div>
 
-        <!-- bootstrap start-->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-    <!-- bootstrap end-->
-
 </body>
 
 <!-- フッタ -->
-<div id="footer">
-    <small>Copyright (c) 技研ウェブ All Rights Reserved.</small>
-</div>
+<footer class="container">
+    <!-- <small>Copyright (c) 技研ウェブ All Rights Reserved.</small> -->
+</footer>
 
 </html>
