@@ -9,21 +9,25 @@
 <!-- ul要素はUnorderd Listの略で、順序を問わないリストを作成する際に使用します。 li要素はリストの各項目を表します。 -->
 
 <body>
-    <div id="pagebody">
-        <!-- コンテンツ -->
-        <div id="contents">
-            <h1>todolist</h1>
-            <form action="/express/todolistResult" method="POST">
-                <input type="text" name="msg" />
-                <button type="submit">登録</button>
-            </form>
-        </div>
-    </div>
-</body>
+    <main>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>todolist</h1>
+                        <form action="/express/todolistResult" method="POST">
+                            <input type="text" name="msg" />
+                            <button type="submit">登録</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="container">
+        <%- include('./common/_footer.ejs') %>
+    </footer>
 
-<!-- フッタ -->
-<div id="footer">
-    <%- include('./common/_footer.ejs') %>
-</div>
+</body>
 
 </html>

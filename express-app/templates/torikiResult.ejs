@@ -7,32 +7,36 @@
 </head>
 
 <body>
-    <div id="pagebody">
-        <!-- コンテンツ -->
-        <div id="contents">
-            <h1>結果</h1>
-            <table>
-                <tr>
-                    <th>メニュー名</th>
-                    <th>説明</th>
-                </tr>
-                <tr>
-                    <td><%= menuName %></td>
-                    <td><%= description %></td>
-                </tr>
-            </table>
-            <form action=/express/torikiResult method="POST">
-                <!-- <input type="text" name="username" />
+    <main>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>結果</h1>
+                        <table>
+                            <tr>
+                                <th>メニュー名</th>
+                                <th>説明</th>
+                            </tr>
+                            <tr>
+                                <td><%= menuName %></td>
+                                <td><%= description %></td>
+                            </tr>
+                        </table>
+                        <form action=/express/torikiResult method="POST">
+                            <!-- <input type="text" name="username" />
             <input type="text" name="message" /> -->
-                <button type="submit">もう一回ガチャる</button>
-            </form>
-        </div>
-    </div>
-</body>
+                            <button type="submit">もう一回ガチャる</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="container">
+        <%- include('./common/_footer.ejs') %>
+    </footer>
 
-<!-- フッタ -->
-<div id="footer">
-    <%- include('./common/_footer.ejs') %>
-</div>
+</body>
 
 </html>

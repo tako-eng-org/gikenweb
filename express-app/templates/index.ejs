@@ -7,19 +7,22 @@
 </head>
 
 <body>
-    <div id="pagebody">
+    <main>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>TODO List</h1>
+                        <h1><%= title %></h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="container">
+        <%- include('./common/_footer.ejs') %>
+    </footer>
 
-        <!-- コンテンツ -->
-        <div id="contents">
-            <h1>TODO List</h1>
-            <h1><%= title %></h1>
-        </div>
-    </div>
 </body>
-
-<!-- フッタ -->
-<div id="footer">
-    <%- include('./common/_footer.ejs') %>
-</div>
 
 </html>
