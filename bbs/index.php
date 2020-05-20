@@ -94,8 +94,8 @@
 
                         <body>
                             <form method="post" action="">
-                                名前<input type="text" name="name" value="" />
-                                コメント<textarea name="comment" rows="4" cols="20"></textarea>
+                                名前<input type="text" name="name" value="" /><br>
+                                コメント<textarea name="comment" rows="4" cols="20"></textarea><br>
                                 <input type="submit" name="send" value="書き込む" />
                             </form>
                             <!-- ここに、書き込まれたデータを表示する -->
