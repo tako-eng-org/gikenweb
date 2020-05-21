@@ -99,6 +99,8 @@
                                         <div class="col">
                                             <label for="smFormGroupInput" class="col-sm-2 col-form-label col-form-label-sm">名前</label>
                                         </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-xs-4">
                                             <input type="text" name="name" class="form-control form-control-sm" id="" placeholder="">
                                         </div>
@@ -107,6 +109,8 @@
                                         <div class="col">
                                             <label for="smFormGroupInput" class="col-sm-2 col-form-label col-form-label-sm">本文</label>
                                         </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-xs-7">
                                             <input type="text" name="comment" class="form-control form-control-sm" id="" placeholder="">
                                         </div>
