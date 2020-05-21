@@ -94,24 +94,24 @@
 
                         <body>
                             <div class="container">
-                                <form class="form-horizontal" method="post" action="">
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-2">名前</label>
-                                        <div class="col-xs-5">
-                                            <input type="text" name="name" class="form-control">
+                                <form>
+                                    <div class="form-group row">
+                                        <div class="col">
+                                            <label for="smFormGroupInput" class="col-sm-2 col-form-label col-form-label-sm">名前</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="name" class="form-control form-control-sm" id="" placeholder="">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-xs-2">本文</label>
-                                        <div class="col-xs-5">
-                                            <input type="text" name="comment" class="form-control">
+                                    <div class="form-group row">
+                                        <div class="col">
+                                            <label for="smFormGroupInput" class="col-sm-2 col-form-label col-form-label-sm">本文</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="comment" class="form-control form-control-sm" id="" placeholder="">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-xs-offset-2 col-xs-10">
-                                            <button type="submit" name="send" class="btn btn-default">投稿</button>
-                                        </div>
-                                    </div>
+                                    <button type="submit" class="btn btn-primary">投稿</button>
                                 </form>
                             </div>
                             <!-- ここに、書き込まれたデータを表示する -->
