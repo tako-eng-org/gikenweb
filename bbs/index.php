@@ -94,7 +94,7 @@
 
                         <body>
                             <div class="container">
-                                <form>
+                                <form method="post" action="">
                                     <div class="form-group row">
                                         <div class="col">
                                             <label for="smFormGroupInput" class="col-sm-2 col-form-label col-form-label-sm">名前</label>
