@@ -94,9 +94,18 @@
 
                         <body>
                             <form method="post" action="">
-                                名前<input type="text" name="name" value="" /><br>
-                                コメント<textarea name="comment" rows="4" cols="20"></textarea><br>
-                                <input type="submit" name="send" value="書き込む" />
+                                <div class="form-group">
+                                    <!-- 名前<input type="text" name="name" value="" /><br> -->
+                                    <!-- コメント<textarea name="comment" rows="4" cols="20"></textarea><br> -->
+                                    <label for="formGroupExampleInput">名前</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput1" name="name" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput2">本文</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput2" name="comment" placeholder="Another input">
+                                </div>
+                                <button type="submit" name="send" class="btn btn-primary mb-2">投稿</button>
+                                <!-- <input type="submit" name="send" value="書き込む" /> -->
                             </form>
                             <!-- ここに、書き込まれたデータを表示する -->
                             <?php

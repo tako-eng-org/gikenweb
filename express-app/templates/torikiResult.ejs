@@ -19,24 +19,31 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <h1>結果</h1>
-                        <table>
-                            <tr>
-                                <th>メニュー名</th>
-                                <th>説明</th>
-                            </tr>
-                            <tr>
-                                <td><%= menuName %></td>
-                                <td><%= description %></td>
-                            </tr>
-                        </table>
-                        <form action=/express/torikiResult method="POST">
-                            <!-- <input type="text" name="username" />
-            <input type="text" name="message" /> -->
-                            <button type="submit">もう一回ガチャる</button>
-                        </form>
+                        <h4>メニュー名</h4>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <p><%= menuName %></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h4>説明</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <td><%= description %></td>
+                    </div>
+                </div>
+                <form action=/express/torikiResult method="POST">
+                    <!-- <input type="text" name="username" />
+            <input type="text" name="message" /> -->
+                    <button type="submit">おかわり！</button>
+                </form>
+            </div>
+            </div>
             </div>
         </section>
     </main>
