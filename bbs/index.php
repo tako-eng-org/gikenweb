@@ -111,7 +111,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">投稿</button>
+                                    <button type="submit" name="send" class="btn btn-primary">投稿</button>
                                 </form>
                             </div>
                             <!-- ここに、書き込まれたデータを表示する -->
