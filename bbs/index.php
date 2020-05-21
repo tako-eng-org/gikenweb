@@ -93,20 +93,27 @@
                         </head>
 
                         <body>
-                            <form method="post" action="">
-                                <div class="form-group">
-                                    <!-- 名前<input type="text" name="name" value="" /><br> -->
-                                    <!-- コメント<textarea name="comment" rows="4" cols="20"></textarea><br> -->
-                                    <label for="formGroupExampleInput">名前</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput1" name="name" placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="formGroupExampleInput2">本文</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput2" name="comment" placeholder="Another input">
-                                </div>
-                                <button type="submit" name="send" class="btn btn-primary mb-2">投稿</button>
-                                <!-- <input type="submit" name="send" value="書き込む" /> -->
-                            </form>
+                            <div class="container">
+                                <form class="form-horizontal" method="post" action="">
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-2">名前</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="name" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-2">本文</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="comment" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-offset-2 col-xs-10">
+                                            <button type="submit" name="send" class="btn btn-default">投稿</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                             <!-- ここに、書き込まれたデータを表示する -->
                             <?php
                             if ($msg     !== '') echo '<p>' . $msg . '</p>';
