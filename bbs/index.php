@@ -96,7 +96,7 @@
                             <div class="container">
                                 <form method="post" action="">
                                     <div class="form-group row">
-                                        <div class="col">
+                                        <div class="col-xs-4">
                                             <label for="smFormGroupInput" class="col-sm-2 col-form-label col-form-label-sm">名前</label>
                                             <div class="col-sm-10">
                                                 <input type="text" name="name" class="form-control form-control-sm" id="" placeholder="">
@@ -104,7 +104,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">
+                                        <div class="col-xs-7">
                                             <label for="smFormGroupInput" class="col-sm-2 col-form-label col-form-label-sm">本文</label>
                                             <div class="col-sm-10">
                                                 <input type="text" name="comment" class="form-control form-control-sm" id="" placeholder="">
