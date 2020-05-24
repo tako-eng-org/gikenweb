@@ -1,3 +1,5 @@
 express-app/node_modules
 *.log
-*__pychache__*
+*__pycache__*
+django_app/hello/migrations
+django_app/db.sqlite3
