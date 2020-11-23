@@ -12,16 +12,14 @@
 
     //TODO ここうまく入らない。要修正2020/11/23
     for (let i = 0; i < choiceArray.length; i++) {
-      if (choiceArray[i] == null || choiceArray[i] == "") {
-        console.log("tetetete");
-        result.textContent = `「${choiceArray[i].value}」が空文字です`;
+      if (!choiceArray[i].value) {
+        result.textContent = `入力してから決めてもらってください`;
         return;
       }
     }
 
     let n = Math.floor(Math.random() * choiceArray.length);
     result.textContent = `「${choiceArray[n].value}」にしましょう。`;
-    console.log("wawawa");
   });
 
   reset.addEventListener("click", function () {
