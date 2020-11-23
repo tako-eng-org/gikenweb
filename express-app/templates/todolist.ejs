@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
+  <head>
     <%- include('./common/_header.ejs', {param:'param'}) %>
     <title>todolist | 技研ウェブ</title>
-</head>
+  </head>
 
-<!-- ul要素はUnorderd Listの略で、順序を問わないリストを作成する際に使用します。 li要素はリストの各項目を表します。 -->
+  <!-- ul要素はUnorderd Listの略で、順序を問わないリストを作成する際に使用します。 li要素はリストの各項目を表します。 -->
 
-<body>
+  <body>
     <main>
-        <section>
-            <div class="container">
-                <div class="row">
-                      <div class="col">
-                        <h1>todolist</h1>
-                        <form action="/express/todolistResult" method="POST">
-                            <input type="text" name="msg" />
-                            <button type="submit">登録</button>
-                        </form>
-                    </div>
-                </div>
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <h1>todolist</h1>
+              <form action="/express/todolistResult" method="POST">
+                <input type="text" name="msg" />
+                <button type="submit">登録</button>
+              </form>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </main>
-    <footer class="container">
-        <%- include('./common/_footer.ejs') %>
-    </footer>
-
-</body>
-
+    <footer class="container"><%- include('./common/_footer.ejs') %></footer>
+  </body>
 </html>

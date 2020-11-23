@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
+  <head>
     <%- include('./common/_header.ejs') %>
     <title>トリキガチャ | 技研ウェブ</title>
-<!-- 背景色のみCSSで設定。修正予定 -->
-<style type="text/css">
-        body {
-            background-color:#EDBB34;
-        }
+    <!-- 背景色のみCSSで設定。修正予定 -->
+    <style type="text/css">
+      body {
+        background-color: #edbb34;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <main>
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <h1>トリキ</h1>
-                        <form action="/express/torikiResult" method="POST">
-                            <!-- <input type="text" name="username" />
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <h1>トリキ</h1>
+              <form action="/express/torikiResult" method="POST">
+                <!-- <input type="text" name="username" />
             <input type="text" name="message" /> -->
-                            <button type="submit">ガチャる</button>
-                        </form>
-                    </div>
-                </div>
+                <button type="submit">ガチャる</button>
+              </form>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </main>
-    <footer class="container">
-        <%- include('./common/_footer.ejs') %>
-    </footer>
-
-</body>
-
+    <footer class="container"><%- include('./common/_footer.ejs') %></footer>
+  </body>
 </html>

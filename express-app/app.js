@@ -1,28 +1,28 @@
-const http = require('http');
-const path = require('path');
-const morgan = require('morgan');
-const express = require('express');
-const bodyParser = require('body-parser');
-const fs = require('fs');
+const http = require("http");
+const path = require("path");
+const morgan = require("morgan");
+const express = require("express");
+const bodyParser = require("body-parser");
+const fs = require("fs");
 //const mysql = require("mysql");
 const log4js = require("log4js");
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
 //
 //app.jsはあくまでサーバの立ち上げにつかう。
 //routerとかは、
 //
 //
 
-const app = express();// expressアプリを生成する
+const app = express(); // expressアプリを生成する
 
 app.use(morgan("combined"));
 
-app.use("/static", express.static(path.join(__dirname, "static")));// フォルダの中身を公開する
+app.use("/static", express.static(path.join(__dirname, "static"))); // フォルダの中身を公開する
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.set('views', path.join(__dirname, 'templates')); // viewはtemplatesフォルダで公開する
-app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, "templates")); // viewはtemplatesフォルダで公開する
+app.set("view engine", "ejs");
 
 // >>logging設定*****************************************************************************
 log4js.configure({
@@ -41,31 +41,33 @@ logging.debug("******************************");
 logging.debug(logging);
 // <<logging設定*****************************************************************************
 
-
 // *****************************************************************************
-app.get("/", function(req, res){
-  return res.render("index", {title: "expressアプリのルート"});
- });
+app.get("/", function (req, res) {
+  return res.render("index", { title: "expressアプリのルート" });
+});
 
 // >>フォーム*****************************************************************************
-app.get("/contacts", function(req, res){
+app.get("/contacts", function (req, res) {
   return res.render("contacts");
 });
 
-app.post("/contactsResult", function(req, res){
-  return res.render("contactsResult", {username: req.body.username, message: req.body.message});
+app.post("/contactsResult", function (req, res) {
+  return res.render("contactsResult", {
+    username: req.body.username,
+    message: req.body.message,
+  });
 });
 // <<フォーム*****************************************************************************
 
 // >>トリキガチャ*****************************************************************************
-app.get("/toriki", function(req, res){
+app.get("/toriki", function (req, res) {
   return res.render("toriki");
 });
 
 // ガチャ結果
-app.post("/torikiResult", function(req, res){
+app.post("/torikiResult", function (req, res) {
   // jsonファイルを読み込み
-  let jsonObj = JSON.parse(fs.readFileSync(`./torikiMenu.json`, 'utf8'));
+  let jsonObj = JSON.parse(fs.readFileSync(`./torikiMenu.json`, "utf8"));
 
   let arr = new Array();
 
@@ -80,30 +82,28 @@ app.post("/torikiResult", function(req, res){
   let oneDescription = randomChoiceOne.description;
 
   // リターン
-  return res.render("torikiResult",
-    {
-      menuName: oneName,
-      description: oneDescription,
-    });
+  return res.render("torikiResult", {
+    menuName: oneName,
+    description: oneDescription,
+  });
 });
 // <<トリキガチャ*****************************************************************************
 
 // >> todolist*****************************************************************************
 // ページ表示
-app.get("/todolist", function(req, res){
-return res.render("todolist");
+app.get("/todolist", function (req, res) {
+  return res.render("todolist");
 });
 
 // 結果
-app.post("/todolistResult", function(req, res){
+app.post("/todolistResult", function (req, res) {
+  //   const Sequelize = require('sequelize');
 
-//   const Sequelize = require('sequelize');
-
-// // Option 1: Passing parameters separately
-// const sequelize = new Sequelize('database', 'username', 'password', {
-//   host: 'localhost',
-//   dialect: /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
-// });
+  // // Option 1: Passing parameters separately
+  // const sequelize = new Sequelize('database', 'username', 'password', {
+  //   host: 'localhost',
+  //   dialect: /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
+  // });
 
   // const sequelize = new Sequelize('NodeTest','root','',{dialect:'mysql'});
 
@@ -127,7 +127,7 @@ app.post("/todolistResult", function(req, res){
   //logging.debug(results);
   //logging.debug(metadata);
 
-  return res.render("todolistResult", {msg: "test"});
+  return res.render("todolistResult", { msg: "test" });
 });
 
 // const connection = mysql.createConnection({

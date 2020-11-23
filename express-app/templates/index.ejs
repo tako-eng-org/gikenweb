@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
+  <head>
     <%- include('./common/_header.ejs') %>
     <title>index | 技研ウェブ</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <main>
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <h1>TODO List</h1>
-                        <h1><%= title %></h1>
-                    </div>
-                </div>
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <h1>TODO List</h1>
+              <h1><%= title %></h1>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </main>
-    <footer class="container">
-        <%- include('./common/_footer.ejs') %>
-    </footer>
-
-</body>
-
+    <footer class="container"><%- include('./common/_footer.ejs') %></footer>
+  </body>
 </html>
