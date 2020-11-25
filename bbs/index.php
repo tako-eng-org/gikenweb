@@ -23,7 +23,6 @@
                 <div class="row">
                     <div class="col">
                         <?php
-
                         // var_dump(__LINE__); //debug********************************************
                         $db_host = 'localhost';
                         $db_user = 'board_user';
@@ -85,13 +84,13 @@
                         mysqli_close($link);
                         ?>
 
-                        <html>
+                        <!-- <html>
 
                         <head>
                             <meta http-equiv="content-type" content="text/html; charset=utf-8" />
                         </head>
 
-                        <body>
+                        <body> -->
                             <div class="container">
                                 <form method="post" action="">
                                     <div class="form-group row">
@@ -124,10 +123,4 @@
         </section>
     </main>
 </body>
-
-<!-- フッタ -->
-<footer class="container">
-    <!-- <small>Copyright (c) 技研ウェブ All Rights Reserved.</small> -->
-</footer>
-
 </html>

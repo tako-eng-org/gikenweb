@@ -16,59 +16,9 @@
     <title>お問い合わせ | 技研ウェブ</title>
 </head>
 
-<!-- ul要素はUnorderd Listの略で、順序を問わないリストを作成する際に使用します。 li要素はリストの各項目を表します。 -->
-
 <body>
-    <header>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <!-- navbar-brand ... メインの項目 -->
-            <a class="navbar-brand" href="../index.html">技研ウェブ</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div id="topNavbar" class="collapse navbar-collapse">
-
-                <!-- navbar-nav ... ナビゲーション部分 -->
-                <ul class="navbar-nav mr-auto">
-                    <!-- <li class="nav-item active">
-                            <a class="nav-link" href="index.html">ホーム</a>
-                        </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="../aboutme.html">自己紹介</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../portforio.html">ポートフォリオ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">工事中</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../contact.html">お問い合わせ</a>
-                    </li>
-                    <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="portforio.html" data-toggle="dropdown">Dropdown</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li> -->
-                </ul>
-                <!-- seach box -->
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" />
-                    <button class="btn btn-secondary my-2 my-sm-0" type="button">
-                        Search
-                    </button>
-                </form>
-            </div>
-        </nav>
-    </header>
     <main>
         <section>
-            <!-- グリッドレイアウト（bootstrapだけでなく、css周りでよく使う。container,row行,col列） -->
-            <!-- https://getbootstrap.com/docs/4.5/examples/grid/ -->
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -195,10 +145,5 @@
     </main>
 
 </body>
-
-<!-- フッタ -->
-<footer class="container">
-    <!-- <small>Copyright (c) 技研ウェブ All Rights Reserved.</small> -->
-</footer>
 
 </html>
