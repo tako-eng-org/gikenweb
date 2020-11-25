@@ -32,49 +32,56 @@
   </head>
 
   <body>
-    <div class="container mt-3">
-      <div class="text-center">
-        <p style="line-height: 1.5rem">
-          迷っていることを入力すると
-          <br />
-          どちらにするか、犬が決めてくれます
-        </p>
-        <img src="img/犬イラスト.png" id="img" width="200" height="200" />
-      </div>
+    <header>
+      <p class="h3 text-center mt-3">ワンチョイス</p>
+    </header>
+    <main>
+      <div class="container">
+        <div class="text-center">
+          <p style="line-height: 1.5rem">
+            迷っていることを入力すると
+            <br />
+            どちらにするか、犬が決めてくれます
+          </p>
+          <img src="img/犬イラスト.png" id="img" width="200" height="200" />
+        </div>
 
-      <div class="text-center">
-        <form>
-          <div class="row">
-            <div class="col">
-              <input
-                type="text"
-                id="do1"
-                class="form-control"
-                placeholder="案１"
-              />
+        <div class="text-center">
+          <form>
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="do1"
+                  placeholder="案１"
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="do2"
+                  placeholder="案２"
+                />
+              </div>
             </div>
-            <div class="col">
-              <input
-                type="text"
-                id="do2"
-                class="form-control"
-                placeholder="案２"
-              />
-            </div>
+          </form>
+          <div id="submitbtn">
+            <button type="button" class="btn btn-outline-secondary mt-3">
+              決めてもらう
+            </button>
           </div>
-        </form>
-        <div id="submitbtn">
-          <button type="button" class="btn btn-outline-secondary mt-3">
-            決めてもらう
+        </div>
+
+        <div class="text-center">
+          <p id="result">結果はここに表示します</p>
+          <button type="button" id="reset" class="btn btn-link">
+            リセット
           </button>
         </div>
       </div>
-
-      <div class="text-center">
-        <p id="result">結果はここに表示します</p>
-        <button type="button" id="reset" class="btn btn-link">リセット</button>
-      </div>
-    </div>
+    </main>
 
     <script src="choice.js"></script>
   </body>

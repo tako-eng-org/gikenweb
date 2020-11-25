@@ -31,51 +31,39 @@
     <title>ポートフォリオ | 技研ウェブ</title>
   </head>
 
-  <body>
+  <body style="padding-top: 60px">
     <header>
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <!-- navbar-brand ... メインの項目 -->
-        <a class="navbar-brand" href="index.html">技研ウェブ</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#topNavbar"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="topNavbar" class="collapse navbar-collapse">
-          <!-- navbar-nav ... ナビゲーション部分 -->
-          <ul class="navbar-nav mr-auto">
-            <!-- <li class="nav-item active">
-                        <a class="nav-link" href="index.html">ホーム</a>
-                    </li> -->
-            <li class="nav-item">
-              <a class="nav-link" href="aboutme.html">自己紹介</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="portforio.html">ポートフォリオ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">工事中</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">お問い合わせ</a>
-            </li>
-          </ul>
-          <!-- seach box -->
-          <form class="form-inline my-2 my-lg-0">
-            <input
-              class="form-control mr-sm-2"
-              type="text"
-              placeholder="Search"
-            />
-            <button class="btn btn-secondary my-2 my-sm-0" type="button">
-              Search
-            </button>
-          </form>
-        </div>
-      </nav>
+      <div class="fixed-top">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+          <!-- navbar-brand ... メインの項目 -->
+          <a class="navbar-brand" href="index.html">技研ウェブ</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#topNavbar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div id="topNavbar" class="collapse navbar-collapse">
+            <!-- navbar-nav ... ナビゲーション部分 -->
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="aboutme.html">自己紹介</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="portforio.html">ポートフォリオ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">工事中</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">お問い合わせ</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
     </header>
 
     <main class="mt-3">
@@ -131,8 +119,11 @@
         </div>
       </section>
     </main>
-    <footer class="container">
-      <!-- <small>Copyright (c) 技研ウェブ All Rights Reserved.</small> -->
-    </footer>
+
+    <!-- <footer class="fixed-bottom text-center">
+      <div class="container">
+        <p>&copy;技研ウェブ</p>
+      </div>
+    </footer> -->
   </body>
 </html>

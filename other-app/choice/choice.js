@@ -9,8 +9,6 @@
   //ボタン"決めてもらう"をクリックしたときの処理
   submitbtn.addEventListener("click", function () {
     const choiceArray = [do1, do2];
-
-    //TODO ここうまく入らない。要修正2020/11/23
     for (let i = 0; i < choiceArray.length; i++) {
       if (!choiceArray[i].value) {
         result.textContent = `入力してから決めてもらってください`;
