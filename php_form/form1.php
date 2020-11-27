@@ -87,12 +87,12 @@
 
                         ?>
 
-                        <head>
+                        <!-- <head>
                             <meta charset="utf8">
                             <title>お問い合わせ</title>
-                        </head>
+                        </head> -->
 
-                        <body>
+                        <!-- <body> -->
                             <a>お問い合わせフォームをphpとMySQLで実装します。</a>
                             <?php echo "<ul>";
                             foreach ($errors as $value) {

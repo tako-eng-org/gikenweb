@@ -29,7 +29,15 @@
     ></script>
     <!-- bootstrap end-->
     <title>phpBBS | 技研ウェブ</title>
-                        <!-- backend start -->
+</head>
+
+<body style="padding-top: 60px">
+    <main>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                    <!-- backend start -->
                         <?php
                         // var_dump(__LINE__); //debug********************************************
                         $db_host = 'localhost';
@@ -81,14 +89,6 @@
                         mysqli_close($link);
                         ?>
                     <!-- backend end -->
-</head>
-
-<body style="padding-top: 60px">
-    <main>
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
                             <div class="container">
                                 <form method="post" action="">
                                     <div class="form-group row">
