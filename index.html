@@ -71,6 +71,26 @@
         <!-- グリッドレイアウト（bootstrapだけでなく、css周りでよく使う。container,row行,col列） -->
         <!-- https://getbootstrap.com/docs/4.5/examples/grid/ -->
         <div class="container">
+          <!-- <p class="date">20xx/01/01</p> -->
+          <script>
+            // 日付を表示する
+            var today = new Date();
+            var dayOfWeek = today.getDay();
+            var dayOfWeekStr = ["日", "月", "火", "水", "木", "金", "土"][
+              dayOfWeek
+            ];
+            var todayHtml =
+              today.getFullYear() +
+              "-" +
+              (today.getMonth() + 1) +
+              "-" +
+              today.getDate();
+            document.write(
+              '<p class="date">' + todayHtml + "(" + dayOfWeekStr + ")</p>"
+            );
+          </script>
+        </div>
+        <div class="container">
           <div class="row">
             <div class="col">
               <!-- コンテンツ -->
