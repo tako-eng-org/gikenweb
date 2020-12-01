@@ -68,8 +68,37 @@
 
     <main class="mt-3">
       <section>
-        <!-- グリッドレイアウト（bootstrapだけでなく、css周りでよく使う。container,row行,col列） -->
-        <!-- https://getbootstrap.com/docs/4.5/examples/grid/ -->
+        <!-- 開始 カレンダーアプリ -->
+        <div class="container">
+          <link rel="stylesheet" href="css/styles.css" />
+          <table>
+            <thead>
+              <tr>
+                <th id="prev">&laquo;</th>
+                <th id="title" colspan="5">2020/05</th>
+                <th id="next">&raquo;</th>
+              </tr>
+              <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+              <tr>
+                <td id="today" colspan="7">Today</td>
+              </tr>
+            </tfoot>
+          </table>
+          <script src="js/calender.js"></script>
+        </div>
+        <!-- 終了 カレンダーアプリ -->
+
         <div class="container">
           <!-- <p class="date">20xx/01/01</p> -->
           <script>
@@ -90,6 +119,7 @@
             );
           </script>
         </div>
+
         <div class="container">
           <div class="row">
             <div class="col">
@@ -110,6 +140,7 @@
           </div>
         </div>
 
+        <!-- 開始 タイマーアプリ -->
         <div class="container">
           <hr />
           <p>ちょっと休憩用</p>
@@ -118,64 +149,11 @@
             <button id="start_stop" class="btn btn-sm btn-primary">
               START
             </button>
+            <script src="js/timer.js"></script>
           </div>
           <hr />
-
-          <script>
-            // タイマープログラム 開始
-            var start;
-            var timerId;
-
-            document
-              .getElementById("start_stop")
-              .addEventListener("click", function () {
-                if (this.innerHTML === "START") {
-                  // STARTボタンをクリックしたときの処理
-                  start = new Date();
-                  timerId = setInterval(goTimer, 10);
-
-                  // STOPボタンにする
-                  this.innerHTML = "STOP";
-                  this.classList.remove("btn-primary");
-                  this.classList.add("btn-danger");
-                } else {
-                  // STOPボタンをクリックしたときの処理
-                  clearInterval(timerId);
-                  // STARTボタンに戻す
-                  this.innerHTML = "START";
-                  this.classList.remove("btn-danger");
-                  this.classList.add("btn-primary");
-                }
-              });
-
-            var addZero = function (value) {
-              if (value < 10) {
-                value = "0" + value;
-              }
-              return value;
-            };
-
-            var goTimer = function () {
-              var now = new Date();
-
-              var milli = now.getTime() - start.getTime();
-              var seconds = Math.floor(milli / 1000);
-              var minutes = Math.floor(seconds / 60);
-              var hours = Math.floor(minutes / 60);
-
-              seconds = seconds - minutes * 60;
-              minutes = minutes - hours * 60;
-
-              document.getElementById("timer").innerHTML =
-                addZero(hours) +
-                ":" +
-                addZero(minutes) +
-                ":" +
-                addZero(seconds);
-            };
-            // タイマープログラム 終了
-          </script>
         </div>
+        <!-- 終了 タイマーアプリ -->
 
         <div class="container">
           <div class="row mb-4">
