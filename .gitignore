@@ -3,4 +3,5 @@ express-app/node_modules
 *__pycache__*
 django_app/hello/migrations
 django_app/db.sqlite3
-*.vscode
+.vscode/
+.idea/
