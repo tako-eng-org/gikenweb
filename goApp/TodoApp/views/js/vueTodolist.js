@@ -5,11 +5,11 @@ new Vue({
   // data オブジェクトのプロパティの値を変更すると、ビューが反応し、新しい値に一致するように更新
   data: {
     // 商品情報
-    products: [],
+    todos: [],
     // 品名
-    productName: "",
+    todoName: "",
     // メモ
-    productMemo: "",
+    todoMemo: "",
     // 商品情報の状態
     current: -1,
     // 商品情報の状態一覧
@@ -31,75 +31,75 @@ new Vue({
       }, {});
     },
     // 表示対象の商品情報を返却する
-    computedProducts() {
-      return this.products.filter(function (el) {
+    computedTodos() {
+      return this.todos.filter(function (el) {
         var option = this.current < 0 ? true : this.current === el.state;
         return option;
       }, this);
     },
     // 入力チェック
     validate() {
-      var isEnteredProductName = 0 < this.productName.length;
-      this.isEntered = isEnteredProductName;
-      return isEnteredProductName;
+      var isEnteredTodoName = 0 < this.todoName.length;
+      this.isEntered = isEnteredTodoName;
+      return isEnteredTodoName;
     },
   },
 
   // インスタンス作成時の処理
   created: function () {
-    this.doFetchAllProducts();
+    this.doFetchAllTodos();
   },
 
   // メソッド定義
   methods: {
     // 全ての商品情報を取得する
-    doFetchAllProducts() {
-      axios.get("/fetchAllProducts").then((response) => {
+    doFetchAllTodos() {
+      axios.get("/fetchAllTodos").then((response) => {
         if (response.status != 200) {
           throw new Error("レスポンスエラー");
         } else {
-          var resultProducts = response.data;
+          var resultTodos = response.data;
 
           // サーバから取得した商品情報をdataに設定する
-          this.products = resultProducts;
+          this.todos = resultTodos;
         }
       });
     },
     // １つの商品情報を取得する
-    doFetchProduct(product) {
+    doFetchTodo(todo) {
       axios
-        .get("/fetchProduct", {
+        .get("/fetchTodo", {
           params: {
-            productID: product.id,
+            todoID: todo.id,
           },
         })
         .then((response) => {
           if (response.status != 200) {
             throw new Error("レスポンスエラー");
           } else {
-            var resultProduct = response.data;
+            var resultTodo = response.data;
 
             // 選択された商品情報のインデックスを取得する
-            var index = this.products.indexOf(product);
+            var index = this.todos.indexOf(todo);
 
             // spliceを使うとdataプロパティの配列の要素をリアクティブに変更できる
-            this.products.splice(index, 1, resultProduct[0]);
+            this.todos.splice(index, 1, resultTodo[0]);
           }
         });
     },
     // 商品情報を登録する
-    doAddProduct() {
+    doAddTodo() {
       // サーバへ送信するパラメータ
       const params = new URLSearchParams();
-      params.append("productName", this.productName);
-      params.append("productMemo", this.productMemo);
+      params.append("todoName", this.todoName);
+      params.append("todoMemo", this.todoMemo);
 
-      axios.post("/addProduct", params).then((response) => {
+      axios.post("/addTodo", params).then((response) => {
         if (response.status != 200) {
           throw new Error("レスポンスエラー");
         } else {
           // 商品情報を取得する
-          this.doFetchAllProducts();
+          this.doFetchAllTodos();
 
           // 入力値を初期化する
           this.initInputValue();
@@ -107,41 +107,41 @@ new Vue({
       });
     },
     // 商品情報の状態を変更する
-    doChangeProductState(product) {
+    doChangeTodoState(todo) {
       // サーバへ送信するパラメータ
       const params = new URLSearchParams();
-      params.append("productID", product.id);
-      params.append("productState", product.state);
+      params.append("todoID", todo.id);
+      params.append("todoState", todo.state);
 
-      axios.post("/changeStateProduct", params).then((response) => {
+      axios.post("/changeStateTodo", params).then((response) => {
         if (response.status != 200) {
           throw new Error("レスポンスエラー");
         } else {
           // 商品情報を取得する
-          this.doFetchProduct(product);
+          this.doFetchTodo(todo);
         }
       });
     },
     // 商品情報を削除する
-    doDeleteProduct(product) {
+    doDeleteTodo(todo) {
       // サーバへ送信するパラメータ
       const params = new URLSearchParams();
-      params.append("productID", product.id);
+      params.append("todoID", todo.id);
 
-      axios.post("/deleteProduct", params).then((response) => {
+      axios.post("/deleteTodo", params).then((response) => {
         if (response.status != 200) {
           throw new Error("レスポンスエラー");
         } else {
           // 商品情報を取得する
-          this.doFetchAllProducts();
+          this.doFetchAllTodos();
         }
       });
     },
     // 入力値を初期化する
     initInputValue() {
       this.current = -1;
-      this.productName = "";
-      this.productMemo = "";
+      this.todoName = "";
+      this.todoMemo = "";
     },
   },
 });

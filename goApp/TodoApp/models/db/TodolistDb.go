@@ -35,62 +35,62 @@ func open() *gorm.DB {
     db.SingularTable(true)
 
     // マイグレーション（テーブルが無い時は自動生成）
-    db.AutoMigrate(&entity.Product{})
+    db.AutoMigrate(&entity.Todo{})
 
     fmt.Println("db connected: ", &db)
     return db
 }
 
-// FindAllProducts は 商品テーブルのレコードを全件取得する
-func FindAllProducts() []entity.Product {
-    products := []entity.Product{}
+// FindAllTodos は 商品テーブルのレコードを全件取得する
+func FindAllTodos() []entity.Todo {
+    todos := []entity.Todo{}
 
     db := open()
     // select
-    db.Order("ID asc").Find(&products)
+    db.Order("ID asc").Find(&todos)
 
     // defer 関数がreturnする時に実行される
     defer db.Close()
 
-    return products
+    return todos
 }
 
-// FindProduct は 商品テーブルのレコードを１件取得する
-func FindProduct(productID int) []entity.Product {
-    product := []entity.Product{}
+// FindTodo は 商品テーブルのレコードを１件取得する
+func FindTodo(todoID int) []entity.Todo {
+    todo := []entity.Todo{}
 
     db := open()
     // select
-    db.First(&product, productID)
+    db.First(&todo, todoID)
     defer db.Close()
 
-    return product
+    return todo
 }
 
-// InsertProduct は 商品テーブルにレコードを追加する
-func InsertProduct(registerProduct *entity.Product) {
+// InsertTodo は 商品テーブルにレコードを追加する
+func InsertTodo(registerTodo *entity.Todo) {
     db := open()
     // insert
-    db.Create(&registerProduct)
+    db.Create(&registerTodo)
     defer db.Close()
 }
 
-// UpdateStateProduct は 商品テーブルの指定したレコードの状態を変更する
-func UpdateStateProduct(productID int, productState int) {
-    product := []entity.Product{}
+// UpdateStateTodo は 商品テーブルの指定したレコードの状態を変更する
+func UpdateStateTodo(todoID int, todoState int) {
+    todo := []entity.Todo{}
 
     db := open()
     // update
-    db.Model(&product).Where("ID = ?", productID).Update("State", productState)
+    db.Model(&todo).Where("ID = ?", todoID).Update("State", todoState)
     defer db.Close()
 }
 
-// DeleteProduct は 商品テーブルの指定したレコードを削除する
-func DeleteProduct(productID int) {
-    product := []entity.Product{}
+// DeleteTodo は 商品テーブルの指定したレコードを削除する
+func DeleteTodo(todoID int) {
+    todo := []entity.Todo{}
 
     db := open()
     // delete
-    db.Delete(&product, productID)
+    db.Delete(&todo, todoID)
     defer db.Close()
 }

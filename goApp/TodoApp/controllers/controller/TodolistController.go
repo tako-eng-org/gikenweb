@@ -23,64 +23,64 @@ const (
     Purchased = 1
 )
 
-// FetchAllProducts は 全ての商品情報を取得する
-func FetchAllProducts(c *gin.Context) {
-    resultProducts := db.FindAllProducts()
+// FetchAllTodos は 全ての商品情報を取得する
+func FetchAllTodos(c *gin.Context) {
+    resultTodos := db.FindAllTodos()
 
     // URLへのアクセスに対してJSONを返す
-    c.JSON(200, resultProducts)
+    c.JSON(200, resultTodos)
 }
 
-// FindProduct は 指定したIDの商品情報を取得する
-func FindProduct(c *gin.Context) {
-    productIDStr := c.Query("productID")
+// FindTodo は 指定したIDの商品情報を取得する
+func FindTodo(c *gin.Context) {
+    todoIDStr := c.Query("todoID")
 
-    productID, _ := strconv.Atoi(productIDStr)
+    todoID, _ := strconv.Atoi(todoIDStr)
 
-    resultProduct := db.FindProduct(productID)
+    resultTodo := db.FindTodo(todoID)
 
     // URLへのアクセスに対してJSONを返す
-    c.JSON(200, resultProduct)
+    c.JSON(200, resultTodo)
 }
 
-// AddProduct は 商品をDBへ登録する
-func AddProduct(c *gin.Context) {
-    productName := c.PostForm("productName")
-    productMemo := c.PostForm("productMemo")
+// AddTodo は 商品をDBへ登録する
+func AddTodo(c *gin.Context) {
+    todoName := c.PostForm("todoName")
+    todoMemo := c.PostForm("todoMemo")
 
-    var product = entity.Product{
-        Name:  productName,
-        Memo:  productMemo,
+    var todo = entity.Todo{
+        Name:  todoName,
+        Memo:  todoMemo,
         State: NotPurchased,
     }
 
-    db.InsertProduct(&product)
+    db.InsertTodo(&todo)
 }
 
-// ChangeStateProduct は 商品情報の状態を変更する
-func ChangeStateProduct(c *gin.Context) {
-    reqProductID := c.PostForm("productID")
-    reqProductState := c.PostForm("productState")
+// ChangeStateTodo は 商品情報の状態を変更する
+func ChangeStateTodo(c *gin.Context) {
+    reqTodoID := c.PostForm("todoID")
+    reqTodoState := c.PostForm("todoState")
 
-    productID, _ := strconv.Atoi(reqProductID)
-    productState, _ := strconv.Atoi(reqProductState)
+    todoID, _ := strconv.Atoi(reqTodoID)
+    todoState, _ := strconv.Atoi(reqTodoState)
     changeState := NotPurchased
 
     // 商品状態が未購入の場合
-    if productState == NotPurchased {
+    if todoState == NotPurchased {
         changeState = Purchased
     } else {
         changeState = NotPurchased
     }
 
-    db.UpdateStateProduct(productID, changeState)
+    db.UpdateStateTodo(todoID, changeState)
 }
 
-// DeleteProduct は 商品情報をDBから削除する
-func DeleteProduct(c *gin.Context) {
-    productIDStr := c.PostForm("productID")
+// DeleteTodo は 商品情報をDBから削除する
+func DeleteTodo(c *gin.Context) {
+    todoIDStr := c.PostForm("todoID")
 
-    productID, _ := strconv.Atoi(productIDStr)
+    todoID, _ := strconv.Atoi(todoIDStr)
 
-    db.DeleteProduct(productID)
+    db.DeleteTodo(todoID)
 }
