@@ -32,21 +32,21 @@ func serve() {
 
     // ルーターの設定
     // URLへのアクセスに対して静的ページを返す
-    router.StaticFS("/shoppingapp", http.Dir("./views/static"))
+    router.StaticFS("/todoapp", http.Dir("./views/static"))
 
-    // 全ての商品情報のJSONを返す
+    // 全てのTodoリスト情報のJSONを返す
     router.GET("/fetchAllTodos", controller.FetchAllTodos)
 
-    // １つの商品情報の状態のJSONを返す
+    // １つのTodoリスト情報の状態のJSONを返す
     router.GET("/fetchTodo", controller.FindTodo)
 
-    // 商品情報をDBへ登録する
+    // Todoリスト情報をDBへ登録する
     router.POST("/addTodo", controller.AddTodo)
 
-    // 商品情報の状態を変更する
+    // Todoリスト情報の状態を変更する
     router.POST("/changeStateTodo", controller.ChangeStateTodo)
 
-    // 商品情報を削除する
+    // Todoリスト情報を削除する
     router.POST("/deleteTodo", controller.DeleteTodo)
 
     if err := router.Run(":8080"); err != nil {
