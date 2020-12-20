@@ -14,16 +14,16 @@ import (
     db "../../models/db"
 )
 
-// 商品の購入状態を定義
+// Todoリストの購入状態を定義
 const (
-    // NotPurchased は 未購入
+    // NotPurchased は 未実施
     NotPurchased = 0
 
-    // Purchased は 購入済
+    // Purchased は 実施済
     Purchased = 1
 )
 
-// FetchAllTodos は 全ての商品情報を取得する
+// FetchAllTodos は 全てのTodoリスト情報を取得する
 func FetchAllTodos(c *gin.Context) {
     resultTodos := db.FindAllTodos()
 
@@ -31,7 +31,7 @@ func FetchAllTodos(c *gin.Context) {
     c.JSON(200, resultTodos)
 }
 
-// FindTodo は 指定したIDの商品情報を取得する
+// FindTodo は 指定したIDのTodoリスト情報を取得する
 func FindTodo(c *gin.Context) {
     todoIDStr := c.Query("todoID")
 
@@ -43,7 +43,7 @@ func FindTodo(c *gin.Context) {
     c.JSON(200, resultTodo)
 }
 
-// AddTodo は 商品をDBへ登録する
+// AddTodo は TodoリストをDBへ登録する
 func AddTodo(c *gin.Context) {
     todoName := c.PostForm("todoName")
     todoMemo := c.PostForm("todoMemo")
@@ -57,7 +57,7 @@ func AddTodo(c *gin.Context) {
     db.InsertTodo(&todo)
 }
 
-// ChangeStateTodo は 商品情報の状態を変更する
+// ChangeStateTodo は Todoリスト情報の状態を変更する
 func ChangeStateTodo(c *gin.Context) {
     reqTodoID := c.PostForm("todoID")
     reqTodoState := c.PostForm("todoState")
@@ -66,7 +66,7 @@ func ChangeStateTodo(c *gin.Context) {
     todoState, _ := strconv.Atoi(reqTodoState)
     changeState := NotPurchased
 
-    // 商品状態が未購入の場合
+    // Todoリスト状態が未実施の場合
     if todoState == NotPurchased {
         changeState = Purchased
     } else {
@@ -76,7 +76,7 @@ func ChangeStateTodo(c *gin.Context) {
     db.UpdateStateTodo(todoID, changeState)
 }
 
-// DeleteTodo は 商品情報をDBから削除する
+// DeleteTodo は Todoリスト情報をDBから削除する
 func DeleteTodo(c *gin.Context) {
     todoIDStr := c.PostForm("todoID")
 
