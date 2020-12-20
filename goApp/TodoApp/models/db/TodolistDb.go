@@ -9,17 +9,15 @@ import (
 
     // エンティティ(データベースのテーブルの行に対応)
     entity "../entity"
+
+    // postgres用ライブラリ。importしないと下記エラーを出力する。
+    // sql: unknown driver "postgres" (forgotten import?)
+    _ "github.com/lib/pq"
 )
 
 // DB接続する
 func open() *gorm.DB {
-    DBMS := "mysql"
-    USER := "root"
-    PASS := "password"
-    PROTOCOL := "tcp(localhost:3306)"
-    DBNAME := "Todo"
-    CONNECT := USER + ":" + PASS + "@" + PROTOCOL + "/" + DBNAME
-    db, err := gorm.Open(DBMS, CONNECT)
+    db, err := gorm.Open("postgres", "host=localhost port=5432 user=tako dbname=todo sslmode=disable")
 
     if err != nil {
         panic(err.Error())
