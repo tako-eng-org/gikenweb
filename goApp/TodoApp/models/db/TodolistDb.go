@@ -17,7 +17,7 @@ func open() *gorm.DB {
     USER := "root"
     PASS := "password"
     PROTOCOL := "tcp(localhost:3306)"
-    DBNAME := "Shopping"
+    DBNAME := "Todo"
     CONNECT := USER + ":" + PASS + "@" + PROTOCOL + "/" + DBNAME
     db, err := gorm.Open(DBMS, CONNECT)
 
@@ -41,7 +41,7 @@ func open() *gorm.DB {
     return db
 }
 
-// FindAllTodos は 商品テーブルのレコードを全件取得する
+// FindAllTodos は Todoリストテーブルのレコードを全件取得する
 func FindAllTodos() []entity.Todo {
     todos := []entity.Todo{}
 
@@ -55,7 +55,7 @@ func FindAllTodos() []entity.Todo {
     return todos
 }
 
-// FindTodo は 商品テーブルのレコードを１件取得する
+// FindTodo は Todoリストテーブルのレコードを１件取得する
 func FindTodo(todoID int) []entity.Todo {
     todo := []entity.Todo{}
 
@@ -67,7 +67,7 @@ func FindTodo(todoID int) []entity.Todo {
     return todo
 }
 
-// InsertTodo は 商品テーブルにレコードを追加する
+// InsertTodo は Todoリストテーブルにレコードを追加する
 func InsertTodo(registerTodo *entity.Todo) {
     db := open()
     // insert
@@ -75,7 +75,7 @@ func InsertTodo(registerTodo *entity.Todo) {
     defer db.Close()
 }
 
-// UpdateStateTodo は 商品テーブルの指定したレコードの状態を変更する
+// UpdateStateTodo は Todoリストテーブルの指定したレコードの状態を変更する
 func UpdateStateTodo(todoID int, todoState int) {
     todo := []entity.Todo{}
 
@@ -85,7 +85,7 @@ func UpdateStateTodo(todoID int, todoState int) {
     defer db.Close()
 }
 
-// DeleteTodo は 商品テーブルの指定したレコードを削除する
+// DeleteTodo は Todoリストテーブルの指定したレコードを削除する
 func DeleteTodo(todoID int) {
     todo := []entity.Todo{}
 
