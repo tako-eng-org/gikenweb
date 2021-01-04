@@ -6,3 +6,4 @@ django_app/db.sqlite3
 .vscode/
 .idea/
 *__debug_bin
+/goApp/TodoApp/go_build_server_go
