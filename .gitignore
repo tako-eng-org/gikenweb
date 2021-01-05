@@ -1,9 +1,7 @@
 express-app/node_modules
 *.log
 *__pycache__*
-django_app/hello/migrations
-django_app/db.sqlite3
 .vscode/
 .idea/
 *__debug_bin
-/goApp/TodoApp/go_build_server_go
+/goApp/TodoApp/server_todo_app
