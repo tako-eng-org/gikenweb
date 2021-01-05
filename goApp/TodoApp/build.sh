@@ -1,2 +1,3 @@
-go build -o go_build_server_go server.go
-./go_build_server_go
+#!/bin/bash
+go build -o server_todo_app server.go
+./server_todo_app
