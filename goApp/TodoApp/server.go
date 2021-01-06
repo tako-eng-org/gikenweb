@@ -12,6 +12,7 @@ import (
 
 	//// MySQL用ドライバ
 	//_ "github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 
 	// コントローラー
 	controller "./controllers/controller"
@@ -48,6 +49,10 @@ func serve() {
 
 	// Todoリスト情報を削除する
 	router.POST("/deleteTodo", controller.DeleteTodo)
+
+	router.NoRoute(func(c *gin.Context) {
+		c.JSON(http.StatusNotFound, gin.H{"message": "Page not Found!!"})
+	})
 
 	if err := router.Run(":8080"); err != nil {
 		log.Fatal("Server Run Failed.: ", err)
