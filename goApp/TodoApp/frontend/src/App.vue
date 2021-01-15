@@ -1,19 +1,38 @@
 <template>
   <div id="app">
+    <!-- ヘッダー設定ここから -->
+    <myheader></myheader>
+    <!-- ヘッダー設定ここまで -->
+
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <button type="button" class="btn btn-primary">テストボタン_Primary</button>
+
+    <!-- テストコードここから -->
+    <todolist></todolist>
+    <!-- テストコードここまで -->
+
+    <!-- フッター設定ここから -->
+    <myfooter></myfooter>
+    <!-- フッター設定ここまで -->
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import myheader from './components/myheader'
+import todolist from './components/todolist.vue'
+import myfooter from './components/myfooter'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    myheader,
+    todolist,
+    myfooter,
   }
+
 }
 </script>
 
