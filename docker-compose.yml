@@ -12,12 +12,13 @@ services:
       # gikenweb pages
       - ./static:/var/www/html
       - ./other-app:/var/www/html/other-app
+    depends_on:
+      - todo_app
   todo_app:
     build:
       context: ./goApp/TodoApp
     command: go run server.go
     depends_on:
-      - nginx
       - postgres
   postgres:
     image: postgres:9.2-alpine
