@@ -21,7 +21,7 @@ services:
     volumes:
       - goApp/TodoApp:/app
     depends_on:
-      - postgre
+      - postgres
   postgres:
     image: postgres:9.2-alpine
     volumes:
