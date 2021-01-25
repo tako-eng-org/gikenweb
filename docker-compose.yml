@@ -19,7 +19,7 @@ services:
       context: ./goApp/TodoApp
     command: go run server.go
     volumes:
-      - goApp/TodoApp:/app
+      - ./goApp/TodoApp:/app
     depends_on:
       - postgres
   postgres:
