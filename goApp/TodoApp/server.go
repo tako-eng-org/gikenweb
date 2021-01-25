@@ -29,11 +29,13 @@ func serve() {
 	router := gin.Default()
 
 	// 静的ファイルのパスを指定
-	router.Static("/views", "./views")
+	//router.Static("/views", "./views")
+	router.Static("/frontend", "./frontend")
 
 	// ルーターの設定
 	// URLへのアクセスに対して静的ページを返す
-	router.StaticFS("/todoapp", http.Dir("./views/static"))
+	//router.StaticFS("/todoapp", http.Dir("./views/static"))
+	router.StaticFS("/todoapp", http.Dir("./frontend/public"))
 
 	// 全てのTodoリスト情報のJSONを返す
 	router.GET("/fetchAllTodos", controller.FetchAllTodos)
