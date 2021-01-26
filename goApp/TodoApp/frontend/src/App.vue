@@ -4,9 +4,9 @@
     <myheader></myheader>
     <!-- ヘッダー設定ここまで -->
 
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <button type="button" class="btn btn-primary">テストボタン_Primary</button>
+<!--    <img alt="Vue logo" src="./assets/logo.png">-->
+<!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
+<!--    <button type="button" class="btn btn-primary">テストボタン_Primary</button>-->
 
     <!-- テストコードここから -->
     <todolist></todolist>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
 import myheader from './components/myheader'
 import todolist from './components/todolist.vue'
 import myfooter from './components/myfooter'
@@ -29,7 +29,7 @@ export default {
   // name: 'App',
   name: 'app',
   components: {
-    HelloWorld,
+    // HelloWorld,
     myheader,
     todolist,
     myfooter,
