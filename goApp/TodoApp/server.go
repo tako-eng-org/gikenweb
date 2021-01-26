@@ -35,7 +35,7 @@ func serve() {
 	// ルーターの設定
 	// URLへのアクセスに対して静的ページを返す
 	//router.StaticFS("/todoapp", http.Dir("./views/static"))
-	router.StaticFS("/todoapp", http.Dir("./frontend/public"))
+	router.StaticFS("/todoapp", http.Dir("./frontend/dist"))
 
 	// 全てのTodoリスト情報のJSONを返す
 	router.GET("/fetchAllTodos", controller.FetchAllTodos)
