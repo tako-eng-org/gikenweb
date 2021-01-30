@@ -170,7 +170,7 @@ export default {
   methods: {
     // 全てのTodoリスト情報を取得する
     doFetchAllTodos() {
-      axios.get("/fetchAllTodos").then((response) => {
+      axios.get("/gin/fetchAllTodos").then((response) => {
         if (response.status != 200) {
           throw new Error("レスポンスエラー");
         } else {
@@ -184,7 +184,7 @@ export default {
     // １つのTodoリスト情報を取得する
     doFetchTodo(todo) {
       axios
-          .get("/fetchTodo", {
+          .get("/gin/fetchTodo", {
             params: {
               todoID: todo.id,
             },
@@ -210,7 +210,7 @@ export default {
       params.append("todoTitle", this.todoTitle);
       params.append("todoMemo", this.todoMemo);
 
-      axios.post("/addTodo", params).then((response) => {
+      axios.post("/gin/addTodo", params).then((response) => {
         if (response.status != 200) {
           throw new Error("レスポンスエラー");
         } else {
@@ -229,7 +229,7 @@ export default {
       params.append("todoID", todo.id);
       params.append("todoState", todo.state);
 
-      axios.post("/changeStateTodo", params).then((response) => {
+      axios.post("/gin/changeStateTodo", params).then((response) => {
         if (response.status != 200) {
           throw new Error("レスポンスエラー");
         } else {
@@ -244,7 +244,7 @@ export default {
       const params = new URLSearchParams();
       params.append("todoID", todo.id);
 
-      axios.post("/deleteTodo", params).then((response) => {
+      axios.post("/gin/deleteTodo", params).then((response) => {
         if (response.status != 200) {
           throw new Error("レスポンスエラー");
         } else {
