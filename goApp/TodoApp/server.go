@@ -30,7 +30,8 @@ func serve() {
 
 	// 静的ファイルのパスを指定
 	//router.Static("/views", "./views")
-	router.Static("/frontend", "./frontend")
+	router.Static("/js", "./frontend/dist/js")
+	router.Static("/css", "./frontend/dist/css")
 
 	// ルーターの設定
 	// URLへのアクセスに対して静的ページを返す
