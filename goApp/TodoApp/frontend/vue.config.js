@@ -7,5 +7,12 @@ module.exports = {
             entry: "src/main.js",
             title: "Todoアプリ",
         }
-    }
+    },
+    devServer: {
+        proxy: {
+            "/gin/": {
+                target: "http://localhost:8000",
+            },
+        },
+    },
 }
