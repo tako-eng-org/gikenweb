@@ -84,7 +84,7 @@ func UpdateStateTodo(todoID int, todoState int) {
 
 	db := open()
 	// update
-	db.Model(&todo).Where("ID = ?", todoID).Update("State", todoState)
+	db.Model(&todo).Where("ID = ?", todoID).Update("state", todoState)
 	defer db.Close()
 }
 
