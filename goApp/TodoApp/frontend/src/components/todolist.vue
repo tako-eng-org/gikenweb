@@ -3,6 +3,7 @@
     <div class="row">
       <h1>Todoリスト</h1>
     </div>
+
     <!-- 検索条件ここから -->
     <div class="form-check form-check-inline">
       <!--      ラジオボタンを初期状態"すべて"(current:-1)として、状態一覧を表示する-->
@@ -18,13 +19,11 @@
     </div>
     <!-- 検索条件ここまで -->
 
-    <!-- 追加インプットエリアここから -->
+    <!-- 追加エリアここから -->
     <form>
       <div class="form-group row">
-        <!--        <label for="todona" class="col-sm-2 col-form-label">タイトル</label>-->
         <label class="col-sm-2 col-form-label">タイトル</label>
         <div class="col-sm-10">
-          <!--              id="todona"-->
           <input
               type="text"
               class="form-control"
@@ -35,35 +34,27 @@
               placeholder="Todoタイトルを入力してください※必須"
           />
         </div>
-      </div>
-      <div class="form-group row">
         <label class="col-sm-2 col-form-label">メモ</label>
-        <!--        <label for="todome" class="col-sm-2 col-form-label">メモ</label>-->
-        <!--        id="todome"-->
         <div class="col-sm-10">
-        <input
+          <input
               type="text"
               class="form-control"
               name="todoMemo"
               v-model="todoMemo"
               value=""
           />
+          <!--isEnteredがfalse(未入力)なら、ボタンを押下できないようにする-->
+          <button
+              class="btn btn-primary"
+              v-on:click="doAddTodo"
+              v-bind:disabled="!isEntered"
+          >
+            追加
+          </button>
         </div>
       </div>
-      <!-- 追加インプットエリアここまで -->
-
-      <!-- 追加ボタンここから -->
-      <div class="form-group">
-        <button
-            class="btn btn-primary"
-            v-on:click="doAddTodo"
-            v-bind:disabled="!isEntered"
-        >
-          追加
-        </button>
-      </div>
-      <!-- 追加ボタンここまで -->
     </form>
+    <!-- 追加エリアここまで -->
 
     <hr/>
     <div class="container">
@@ -116,7 +107,7 @@
 import axios from "axios";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       // Todoリスト情報
       todos: [],
@@ -128,9 +119,9 @@ export default {
       current: -1,
       // Todoリスト情報の状態一覧
       options: [
-        { value: -1, label: "すべて" },
-        { value: 0, label: "未実施" },
-        { value: 1, label: "実施済" },
+        {value: -1, label: "すべて"},
+        {value: 0, label: "未実施"},
+        {value: 1, label: "実施済"},
       ],
       // true：入力済・false：未入力
       isEntered: false,
@@ -141,28 +132,28 @@ export default {
   computed: {
     // Todoリストの状態一覧を表示する
     labels() {
-      return this.options.reduce(function(a, b) {
-        return Object.assign(a, { [b.value]: b.label });
+      return this.options.reduce(function (a, b) {
+        return Object.assign(a, {[b.value]: b.label});
       }, {});
     },
     // 表示対象の情報を返却する
     computedTodos() {
-      return this.todos.filter(function(el) {
+      return this.todos.filter(function (el) {
         var option = this.current < 0 ? true : this.current === el.state;
         return option;
       }, this);
     },
     // Unexpected side effect in "validate" computed property
     // 入力チェック
-    // validate() {
-    //     var isEnteredTodoName = 0 < this.todoTitle.length;
-    //     this.isEntered = isEnteredTodoName;
-    //     return isEnteredTodoName;
-    // },
+    validate() {
+        var isEnteredTodoName = 0 < this.todoTitle.length;
+        this.isEntered = isEnteredTodoName;
+        return isEnteredTodoName;
+    },
   },
 
   // インスタンス作成時の処理
-  created: function() {
+  created: function () {
     this.doFetchAllTodos();
   },
 
