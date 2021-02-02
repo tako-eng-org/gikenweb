@@ -10,8 +10,7 @@ import (
 	// Gin
 	"github.com/gin-gonic/gin"
 
-	//// MySQL用ドライバ
-	//_ "github.com/jinzhu/gorm/dialects/mysql"
+	//// postgresql用ドライバ
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 
 	// コントローラー
