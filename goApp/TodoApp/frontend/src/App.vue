@@ -1,50 +1,22 @@
 <template>
-  <div id="app">
-    <!-- ヘッダー設定ここから -->
-    <myheader></myheader>
-    <!-- ヘッダー設定ここまで -->
-
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <button type="button" class="btn btn-primary">テストボタン_Primary</button>
-
-    <!-- テストコードここから -->
-    <todolist></todolist>
-    <my-conponent></my-conponent>
-    <!-- テストコードここまで -->
-
-    <!-- フッター設定ここから -->
-    <myfooter></myfooter>
-    <!-- フッター設定ここまで -->
+  <div>
+    <myHeader></myHeader>
+    <!--    todoListコンポーネントはmain.jsでグローバル登録している-->
+    <todoList></todoList>
+    <myFooter></myFooter>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import myheader from './components/myheader'
-import todolist from './components/todolist.vue'
-import myfooter from './components/myfooter'
+import myHeader from './components/myheader.vue'
+import myFooter from './components/myfooter.vue'
 
+// コンポーネントをローカル登録する
 export default {
-  // name: 'App',
-  name: 'app',
   components: {
-    HelloWorld,
-    myheader,
-    todolist,
-    myfooter,
+    myHeader: myHeader,
+    myFooter: myFooter,
   }
 
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

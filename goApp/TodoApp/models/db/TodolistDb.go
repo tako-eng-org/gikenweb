@@ -18,11 +18,11 @@ import (
 // DB接続する
 func open() *gorm.DB {
 	//ローカル開発用
-	//db, err := gorm.Open("postgres", "host=localhost port=5432 user=tako dbname=todo sslmode=disable")
+	db, err := gorm.Open("postgres", "host=postgres port=5432 user=root password=password dbname=todo sslmode=disable")
 	// RDS用
 	//db, err := gorm.Open("postgres", "host=gikenweb-db1.c5t2snwrws8q.us-east-2.rds.amazonaws.com port=5432 user=postgres password=password dbname=todo sslmode=disable")
 	// EC2用
-	db, err := gorm.Open("postgres", "host=localhost port=5432 user=postgres dbname=todo sslmode=disable")
+	//db, err := gorm.Open("postgres", "host=localhost port=5432 user=postgres dbname=todo sslmode=disable")
 
 	if err != nil {
 		panic(err.Error())
@@ -84,7 +84,7 @@ func UpdateStateTodo(todoID int, todoState int) {
 
 	db := open()
 	// update
-	db.Model(&todo).Where("ID = ?", todoID).Update("State", todoState)
+	db.Model(&todo).Where("ID = ?", todoID).Update("state", todoState)
 	defer db.Close()
 }
 

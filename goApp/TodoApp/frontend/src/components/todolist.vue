@@ -1,12 +1,14 @@
 <template>
   <div class="container">
     <div class="row">
-      <h1>Todoリスト(vue_frontendから)</h1>
+      <h1>Todoリスト</h1>
     </div>
-    <!-- 検索条件 -->
+
+    <!-- 検索条件ここから -->
     <div class="form-check form-check-inline">
+      <!--      ラジオボタンを初期状態"すべて"(current:-1)として、状態一覧を表示する-->
       <!--      <label class="form-check-label" v-for="label in options">-->
-      <label class="form-check-label" v-for="(label, key) in options" :key="key">
+      <label class="form-check-label" v-for="(label, key) in options" v-bind:key="key">
         <input
             class="form-check-input"
             type="radio"
@@ -15,52 +17,49 @@
         />{{ label.label }}
       </label>
     </div>
+    <!-- 検索条件ここまで -->
 
+    <!-- 追加エリアここから -->
     <form>
       <div class="form-group row">
-        <label for="todona" class="col-sm-2 col-form-label">タイトル</label>
+        <label class="col-sm-2 col-form-label">タイトル</label>
         <div class="col-sm-10">
           <input
               type="text"
               class="form-control"
-              id="todona"
-              name="todoName"
-              v-model="todoName"
+              name="todoTitle"
+              v-model="todoTitle"
               v-bind:class="{'alert-color': !validate }"
               value=""
               placeholder="Todoタイトルを入力してください※必須"
           />
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="todome" class="col-sm-2 col-form-label">メモ</label>
+        <label class="col-sm-2 col-form-label">メモ</label>
         <div class="col-sm-10">
           <input
               type="text"
               class="form-control"
-              id="todome"
               name="todoMemo"
               v-model="todoMemo"
               value=""
           />
+          <!--isEnteredがfalse(未入力)なら、ボタンを押下できないようにする-->
+          <button
+              class="btn btn-primary"
+              v-on:click="doAddTodo"
+              v-bind:disabled="!isEntered"
+          >
+            追加
+          </button>
         </div>
       </div>
-      <!-- 追加ボタン -->
-      <div class="form-group">
-        <button
-            class="btn btn-primary"
-            v-on:click="doAddTodo"
-            v-bind:disabled="!isEntered"
-        >
-          追加
-        </button>
-      </div>
     </form>
+    <!-- 追加エリアここまで -->
 
     <hr/>
     <div class="container">
       <table class="table">
-        <!-- テーブルヘッダー -->
+        <!-- テーブルヘッダここから -->
         <thead class="thead-light" v-pre>
         <th class="index" style="width: 10%">No</th>
         <th class="name" style="width: 25%">タイトル</th>
@@ -68,13 +67,15 @@
         <th class="state" style="width: 20%">状態</th>
         <th class="delete" style="width: 20%">削除</th>
         </thead>
+        <!-- テーブルヘッダここまで -->
+        <!-- テーブルボディここから -->
         <tbody>
         <tr v-for="(item, index) in computedTodos" v-bind:key="item.id">
           <td class="index">{{ index + 1 }}</td>
           <td class="name">{{ item.name }}</td>
           <td class="memo">{{ item.memo }}</td>
+          <!-- 状態変更ボタンここから -->
           <td class="state">
-            <!-- 状態変更ボタン -->
             <button
                 class="btn btn-outline-secondary"
                 v-on:click="doChangeTodoState(item)"
@@ -82,8 +83,10 @@
               {{ labels[item.state] }}
             </button>
           </td>
+          <!-- 状態変更ボタンここまで -->
+
+          <!-- レコード削除ボタンここから -->
           <td class="delete">
-            <!-- 削除ボタン -->
             <button
                 class="btn btn-outline-secondary"
                 v-on:click="doDeleteTodo(item)"
@@ -91,9 +94,163 @@
               削除
             </button>
           </td>
+          <!-- レコード削除ボタンここまで -->
         </tr>
         </tbody>
+        <!-- テーブルボディここまで -->
       </table>
     </div>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+
+export default {
+  data: function () {
+    return {
+      // Todoリスト情報
+      todos: [],
+      // Todoタイトル
+      todoTitle: "",
+      // Todoメモ
+      todoMemo: "",
+      // Todoリスト情報の状態
+      current: -1,
+      // Todoリスト情報の状態一覧
+      options: [
+        {value: -1, label: "すべて"},
+        {value: 0, label: "未実施"},
+        {value: 1, label: "実施済"},
+      ],
+      // true：入力済・false：未入力
+      isEntered: false,
+    };
+  },
+
+  // 算出プロパティ
+  computed: {
+    // Todoリストの状態一覧を表示する
+    labels() {
+      return this.options.reduce(function (a, b) {
+        return Object.assign(a, {[b.value]: b.label});
+      }, {});
+    },
+    // 表示対象の情報を返却する
+    computedTodos() {
+      return this.todos.filter(function (el) {
+        var option = this.current < 0 ? true : this.current === el.state;
+        return option;
+      }, this);
+    },
+    // Unexpected side effect in "validate" computed property
+    // 入力チェック
+    validate() {
+        var isEnteredTodoName = 0 < this.todoTitle.length;
+        this.isEntered = isEnteredTodoName;
+        return isEnteredTodoName;
+    },
+  },
+
+  // インスタンス作成時の処理
+  created: function () {
+    this.doFetchAllTodos();
+  },
+
+  // メソッド定義
+  methods: {
+    // 全てのTodoリスト情報を取得する
+    doFetchAllTodos() {
+      axios.get("/gin/fetchAllTodos").then((response) => {
+        if (response.status != 200) {
+          throw new Error("レスポンスエラー");
+        } else {
+          var resultTodos = response.data;
+
+          // サーバから取得したTodoリスト情報をdataに設定する
+          this.todos = resultTodos;
+        }
+      });
+    },
+    // １つのTodoリスト情報を取得する
+    doFetchTodo(todo) {
+      axios
+          .get("/gin/fetchTodo", {
+            params: {
+              todoID: todo.id,
+            },
+          })
+          .then((response) => {
+            if (response.status != 200) {
+              throw new Error("レスポンスエラー");
+            } else {
+              var resultTodo = response.data;
+
+              // 選択されたTodoリスト情報のインデックスを取得する
+              var index = this.todos.indexOf(todo);
+
+              // spliceを使うとdataプロパティの配列の要素をリアクティブに変更できる
+              this.todos.splice(index, 1, resultTodo[0]);
+            }
+          });
+    },
+    // Todoリスト情報を登録する
+    doAddTodo() {
+      // サーバへ送信するパラメータ
+      const params = new URLSearchParams();
+      params.append("todoTitle", this.todoTitle);
+      params.append("todoMemo", this.todoMemo);
+
+      axios.post("/gin/addTodo", params).then((response) => {
+        if (response.status != 200) {
+          throw new Error("レスポンスエラー");
+        } else {
+          // Todoリスト情報を取得する
+          this.doFetchAllTodos();
+
+          // 入力値を初期化する
+          this.initInputValue();
+        }
+      });
+    },
+    // Todoリスト情報の状態を変更する
+    doChangeTodoState(todo) {
+      // サーバへ送信するパラメータ
+      const params = new URLSearchParams();
+      params.append("todoID", todo.id);
+      params.append("todoState", todo.state);
+
+      axios.post("/gin/changeStateTodo", params).then((response) => {
+        if (response.status != 200) {
+          throw new Error("レスポンスエラー");
+        } else {
+          // Todoリスト情報を取得する
+          this.doFetchTodo(todo);
+        }
+      });
+    },
+    // Todoリスト情報を削除する
+    doDeleteTodo(todo) {
+      // サーバへ送信するパラメータ
+      const params = new URLSearchParams();
+      params.append("todoID", todo.id);
+
+      axios.post("/gin/deleteTodo", params).then((response) => {
+        if (response.status != 200) {
+          throw new Error("レスポンスエラー");
+        } else {
+          // Todoリスト情報を取得する
+          this.doFetchAllTodos();
+        }
+      });
+    },
+    // 入力値を初期化する
+    initInputValue() {
+      this.current = -1;
+      this.todoTitle = "";
+      this.todoMemo = "";
+    },
+  },
+}
+
+</script>
