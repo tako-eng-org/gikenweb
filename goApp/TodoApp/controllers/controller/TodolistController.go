@@ -45,11 +45,11 @@ func FindTodo(c *gin.Context) {
 
 // AddTodo は TodoリストをDBへ登録する
 func AddTodo(c *gin.Context) {
-	todoName := c.PostForm("todoName")
+	todoTitle := c.PostForm("todoTitle")
 	todoMemo := c.PostForm("todoMemo")
 
 	var todo = entity.Todo{
-		Name:  todoName,
+		Name:  todoTitle,
 		Memo:  todoMemo,
 		State: NotPurchased,
 	}

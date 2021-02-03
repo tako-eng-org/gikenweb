@@ -10,8 +10,7 @@ import (
 	// Gin
 	"github.com/gin-gonic/gin"
 
-	//// MySQL用ドライバ
-	//_ "github.com/jinzhu/gorm/dialects/mysql"
+	//// postgresql用ドライバ
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 
 	// コントローラー
@@ -30,12 +29,13 @@ func serve() {
 
 	// 静的ファイルのパスを指定
 	//router.Static("/views", "./views")
-	router.Static("/frontend", "./frontend")
+	router.Static("/js", "./frontend/dist/js")
+	router.Static("/css", "./frontend/dist/css")
 
 	// ルーターの設定
 	// URLへのアクセスに対して静的ページを返す
 	//router.StaticFS("/todoapp", http.Dir("./views/static"))
-	router.StaticFS("/todoapp", http.Dir("./frontend/public"))
+	router.StaticFS("/todoapp", http.Dir("./frontend/dist"))
 
 	// 全てのTodoリスト情報のJSONを返す
 	router.GET("/fetchAllTodos", controller.FetchAllTodos)
