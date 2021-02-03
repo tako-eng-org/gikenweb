@@ -6,33 +6,31 @@ labels: ''
 assignees: ''
 
 ---
+### 関連するチケット
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+### 前提・実現したいこと
+ここに質問の内容を詳しく書いてください。
+（例）golangで●●なシステムを作っています。
+xx機能を実装中に以下のエラーメッセージが発生しました。
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+### 発生している問題・エラーメッセージ
+```
+エラーメッセージ
+```
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+### 本来、期待する動作
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+### 再現までの手順
+1. ...」に移動します。
+2. ....」をクリックします。
+3. ....」まで下にスクロールします。
+4. エラーを見る
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+### 該当のソースコード
+```
+ソースコード
+```
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+### 試したこと
 
-**Additional context**
-Add any other context about the problem here.
+### 補足情報（FW/ツールのバージョン、スクリーンショットなど）
