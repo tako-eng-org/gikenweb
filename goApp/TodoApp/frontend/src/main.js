@@ -14,7 +14,7 @@ Vue.config.productionTip = false; // 開発用tipsのON/OFF
 Vue.component('todoList', todoList)
 
 var vm = new Vue({
-  render: h => h(App)
+    render: h => h(App)
 });
 vm.$mount("#app");
 
