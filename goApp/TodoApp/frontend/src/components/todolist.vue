@@ -8,13 +8,13 @@
     <div class="form-check form-check-inline">
       <!--      ラジオボタンを初期状態"すべて"(current:-1)として、状態一覧を表示する-->
       <!--      <label class="form-check-label" v-for="label in options">-->
-      <label class="form-check-label" v-for="(label, key) in options" v-bind:key="key">
+      <label class="form-check-label" v-for="(option, key) in options" v-bind:key="key">
         <input
             class="form-check-input"
             type="radio"
             v-model="current"
-            v-bind:value="label.value"
-        />{{ label.label }}
+            v-bind:value="option.value"
+        />{{ option.label }}
       </label>
     </div>
     <!-- 検索条件ここまで -->
@@ -70,17 +70,17 @@
         <!-- テーブルヘッダここまで -->
         <!-- テーブルボディここから -->
         <tbody>
-        <tr v-for="(item, index) in computedTodos" v-bind:key="item.id">
+        <tr v-for="(computedTodo, index) in computedTodos" v-bind:key="computedTodo.id">
           <td class="index">{{ index + 1 }}</td>
-          <td class="name">{{ item.name }}</td>
-          <td class="memo">{{ item.memo }}</td>
+          <td class="name">{{ computedTodo.name }}</td>
+          <td class="memo">{{ computedTodo.memo }}</td>
           <!-- 状態変更ボタンここから -->
           <td class="state">
             <button
                 class="btn btn-outline-secondary"
-                v-on:click="doChangeTodoState(item)"
+                v-on:click="doChangeTodoState(computedTodo)"
             >
-              {{ labels[item.state] }}
+              {{ labels[computedTodo.state] }}
             </button>
           </td>
           <!-- 状態変更ボタンここまで -->
@@ -89,7 +89,7 @@
           <td class="delete">
             <button
                 class="btn btn-outline-secondary"
-                v-on:click="doDeleteTodo(item)"
+                v-on:click="doDeleteTodo(computedTodo)"
             >
               削除
             </button>
