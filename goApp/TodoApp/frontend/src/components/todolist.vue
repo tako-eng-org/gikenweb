@@ -175,7 +175,7 @@ export default {
       axios
           .get("/gin/fetchTodo", {
             params: {
-              todoID: todo.id,
+              todoId: todo.id,
             },
           })
           .then((response) => {
@@ -215,7 +215,7 @@ export default {
     doChangeTodoState(todo) {
       // サーバへ送信するパラメータ
       const params = new URLSearchParams({
-            "todoID": todo.id,
+            "todoId": todo.id,
             "todoState": todo.state,
           }
       );
@@ -234,7 +234,7 @@ export default {
       // サーバへ送信するパラメータ
       const params = new URLSearchParams(
           {
-            "todoID": todo.id,
+            "todoId": todo.id,
           }
       );
       axios.post("/gin/deleteTodo", params).then((response) => {
