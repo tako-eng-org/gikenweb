@@ -1,7 +1,6 @@
 <template>
   <div>
     <myHeader></myHeader>
-    <!--    todoListコンポーネントはmain.jsでグローバル登録している-->
     <todoList></todoList>
     <myFooter></myFooter>
   </div>
@@ -9,12 +8,14 @@
 
 <script>
 import myHeader from './components/myheader.vue'
+import todoList from './components/todolist.vue'
 import myFooter from './components/myfooter.vue'
 
 // コンポーネントをローカル登録する
 export default {
   components: {
     myHeader: myHeader,
+    todoList: todoList,
     myFooter: myFooter,
   }
 
