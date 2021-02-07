@@ -61,11 +61,13 @@
       <table class="table">
         <!-- テーブルヘッダここから -->
         <thead class="thead-light" v-pre>
-        <th class="index" style="width: 10%">No</th>
-        <th class="name" style="width: 25%">タイトル</th>
-        <th class="memo" style="width: 25%">メモ</th>
-        <th class="state" style="width: 20%">状態</th>
-        <th class="delete" style="width: 20%">削除</th>
+        <tr>
+          <th class="index" style="width: 10%">No</th>
+          <th class="name" style="width: 25%">タイトル</th>
+          <th class="memo" style="width: 25%">メモ</th>
+          <th class="state" style="width: 20%">状態</th>
+          <th class="delete" style="width: 20%">削除</th>
+        </tr>
         </thead>
         <!-- テーブルヘッダここまで -->
         <!-- テーブルボディここから -->
