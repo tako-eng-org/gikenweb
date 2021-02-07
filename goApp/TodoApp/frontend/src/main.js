@@ -1,6 +1,5 @@
 import Vue from "vue";
 import App from "./App.vue";
-import todoList from "./components/todolist.vue"
 // --bootstrapのimport START--
 import {BootstrapVue, IconsPlugin} from "bootstrap-vue";
 // Import Bootstrap an BootstrapVue CSS files (order is important)
@@ -12,9 +11,6 @@ if ( `${process.env.NODE_ENV}` === 'local' ){
     // 開発用tipsをONにする
     Vue.config.productionTip = true;
 }
-
-// コンポーネントをグローバル登録する(すべてのコンポーネントの中で使えるようにする)
-Vue.component('todoList', todoList)
 
 const vm = new Vue({
     render: h => h(App)
