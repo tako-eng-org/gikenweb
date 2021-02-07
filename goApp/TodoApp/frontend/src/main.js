@@ -22,7 +22,4 @@ vm.$mount("#app");
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
-Vue.config.productionTip = false;
 // --bootstrap設定 END--
-
-// console.log(App);
