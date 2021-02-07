@@ -70,7 +70,7 @@ func FindTodo(todoId int) []entity.Todo {
 	return todo
 }
 
-// InsertTodo は Todoリストテーブルにレコードを追加する
+// InsertTodo は Todoリストテーブルにレコードを登録する
 func InsertTodo(registerTodo *entity.Todo) {
 	db := open()
 	// insert
