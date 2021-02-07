@@ -8,12 +8,15 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 // --bootstrapのimport END--
 
-Vue.config.productionTip = false; // 開発用tipsのON/OFF
+if ( `${process.env.NODE_ENV}` === 'local' ){
+    // 開発用tipsをONにする
+    Vue.config.productionTip = true;
+}
 
 // コンポーネントをグローバル登録する(すべてのコンポーネントの中で使えるようにする)
 Vue.component('todoList', todoList)
 
-var vm = new Vue({
+const vm = new Vue({
     render: h => h(App)
 });
 vm.$mount("#app");
