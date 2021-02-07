@@ -59,12 +59,12 @@ func FindAllTodos() []entity.Todo {
 }
 
 // FindTodo は Todoリストテーブルのレコードを１件取得する
-func FindTodo(todoID int) []entity.Todo {
+func FindTodo(todoId int) []entity.Todo {
 	todo := []entity.Todo{}
 
 	db := open()
 	// select
-	db.First(&todo, todoID)
+	db.First(&todo, todoId)
 	defer db.Close()
 
 	return todo
@@ -79,21 +79,21 @@ func InsertTodo(registerTodo *entity.Todo) {
 }
 
 // UpdateStateTodo は Todoリストテーブルの指定したレコードの状態を変更する
-func UpdateStateTodo(todoID int, todoState int) {
+func UpdateStateTodo(todoId int, todoState int) {
 	todo := []entity.Todo{}
 
 	db := open()
 	// update
-	db.Model(&todo).Where("ID = ?", todoID).Update("state", todoState)
+	db.Model(&todo).Where("ID = ?", todoId).Update("state", todoState)
 	defer db.Close()
 }
 
 // DeleteTodo は Todoリストテーブルの指定したレコードを削除する
-func DeleteTodo(todoID int) {
+func DeleteTodo(todoId int) {
 	todo := []entity.Todo{}
 
 	db := open()
 	// delete
-	db.Delete(&todo, todoID)
+	db.Delete(&todo, todoId)
 	defer db.Close()
 }
