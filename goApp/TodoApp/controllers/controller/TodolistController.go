@@ -30,7 +30,7 @@ func FetchAllTodos(c *gin.Context) {
 
 // FindTodo は 指定したIDのTodoリスト情報を取得する
 func FindTodo(c *gin.Context) {
-	todoIDStr := c.Query("todoID")
+	todoIDStr := c.Query("todoId")
 
 	todoID, _ := strconv.Atoi(todoIDStr)
 
@@ -57,7 +57,7 @@ func AddTodo(c *gin.Context) {
 
 // ChangeStateTodo は Todoリスト情報の状態を変更する
 func ChangeStateTodo(c *gin.Context) {
-	reqTodoID := c.PostForm("todoID")
+	reqTodoID := c.PostForm("todoId")
 	reqTodoState := c.PostForm("todoState")
 
 	todoID, _ := strconv.Atoi(reqTodoID)
@@ -73,7 +73,7 @@ func ChangeStateTodo(c *gin.Context) {
 
 // DeleteTodo は Todoリスト情報をDBから削除する
 func DeleteTodo(c *gin.Context) {
-	todoIDStr := c.PostForm("todoID")
+	todoIDStr := c.PostForm("todoId")
 
 	todoID, _ := strconv.Atoi(todoIDStr)
 
