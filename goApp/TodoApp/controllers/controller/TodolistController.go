@@ -14,16 +14,13 @@ import (
 	db "../../models/db"
 )
 
-// Todoリストの購入状態を定義
+// Todoリストの実施状態を定義する
 const (
-	// NotPurchased は 未実施
-	NotPurchased = 0
-
-	// Purchased は 実施済
-	Purchased = 1
+	Waiting   = iota // 0:未実施
+	Completed = iota // 1:実施済
 )
 
-// FetchAllTodos は 全てのTodoリスト情報を取得する
+// 全てのTodoリスト情報を取得する
 func FetchAllTodos(c *gin.Context) {
 	resultTodos := db.FindAllTodos()
 
@@ -31,56 +28,54 @@ func FetchAllTodos(c *gin.Context) {
 	c.JSON(200, resultTodos)
 }
 
-// FindTodo は 指定したIDのTodoリスト情報を取得する
+// 指定したIDのTodoリスト情報を取得する
 func FindTodo(c *gin.Context) {
-	todoIDStr := c.Query("todoID")
+	todoIdStr := c.Query("todoId")
 
-	todoID, _ := strconv.Atoi(todoIDStr)
+	todoId, _ := strconv.Atoi(todoIdStr)
 
-	resultTodo := db.FindTodo(todoID)
+	resultTodo := db.FindTodo(todoId)
 
 	// URLへのアクセスに対してJSONを返す
 	c.JSON(200, resultTodo)
 }
 
-// AddTodo は TodoリストをDBへ登録する
+// TodoリストをDBへ登録する
 func AddTodo(c *gin.Context) {
 	todoTitle := c.PostForm("todoTitle")
 	todoMemo := c.PostForm("todoMemo")
 
+	// テーブルに登録するためのレコード情報
 	var todo = entity.Todo{
 		Name:  todoTitle,
 		Memo:  todoMemo,
-		State: NotPurchased,
+		State: Waiting,
 	}
 
 	db.InsertTodo(&todo)
 }
 
-// ChangeStateTodo は Todoリスト情報の状態を変更する
+// Todoリスト情報の状態を変更する
 func ChangeStateTodo(c *gin.Context) {
-	reqTodoID := c.PostForm("todoID")
+	reqTodoId := c.PostForm("todoId")
 	reqTodoState := c.PostForm("todoState")
 
-	todoID, _ := strconv.Atoi(reqTodoID)
+	todoId, _ := strconv.Atoi(reqTodoId)
 	todoState, _ := strconv.Atoi(reqTodoState)
-	changeState := NotPurchased
-
-	// Todoリスト状態が未実施の場合
-	if todoState == NotPurchased {
-		changeState = Purchased
-	} else {
-		changeState = NotPurchased
+	changeState := Waiting
+	// Todoリスト状態が未実施の場合、実施済へ変更する
+	if todoState == Waiting {
+		changeState = Completed
 	}
 
-	db.UpdateStateTodo(todoID, changeState)
+	db.UpdateStateTodo(todoId, changeState)
 }
 
-// DeleteTodo は Todoリスト情報をDBから削除する
+// Todoリスト情報をDBから削除する
 func DeleteTodo(c *gin.Context) {
-	todoIDStr := c.PostForm("todoID")
+	todoIdStr := c.PostForm("todoId")
 
-	todoID, _ := strconv.Atoi(todoIDStr)
+	todoId, _ := strconv.Atoi(todoIdStr)
 
-	db.DeleteTodo(todoID)
+	db.DeleteTodo(todoId)
 }

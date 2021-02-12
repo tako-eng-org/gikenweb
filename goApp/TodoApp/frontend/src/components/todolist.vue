@@ -7,14 +7,13 @@
     <!-- 検索条件ここから -->
     <div class="form-check form-check-inline">
       <!--      ラジオボタンを初期状態"すべて"(current:-1)として、状態一覧を表示する-->
-      <!--      <label class="form-check-label" v-for="label in options">-->
-      <label class="form-check-label" v-for="(label, key) in options" v-bind:key="key">
+      <label class="form-check-label" v-for="(option, key) in options" v-bind:key="key">
         <input
             class="form-check-input"
             type="radio"
             v-model="current"
-            v-bind:value="label.value"
-        />{{ label.label }}
+            v-bind:value="option.value"
+        />{{ option.label }}
       </label>
     </div>
     <!-- 検索条件ここまで -->
@@ -61,26 +60,28 @@
       <table class="table">
         <!-- テーブルヘッダここから -->
         <thead class="thead-light" v-pre>
-        <th class="index" style="width: 10%">No</th>
-        <th class="name" style="width: 25%">タイトル</th>
-        <th class="memo" style="width: 25%">メモ</th>
-        <th class="state" style="width: 20%">状態</th>
-        <th class="delete" style="width: 20%">削除</th>
+        <tr>
+          <th class="index" style="width: 10%">No</th>
+          <th class="name" style="width: 25%">タイトル</th>
+          <th class="memo" style="width: 25%">メモ</th>
+          <th class="state" style="width: 20%">状態</th>
+          <th class="delete" style="width: 20%">削除</th>
+        </tr>
         </thead>
         <!-- テーブルヘッダここまで -->
         <!-- テーブルボディここから -->
         <tbody>
-        <tr v-for="(item, index) in computedTodos" v-bind:key="item.id">
+        <tr v-for="(computedTodo, index) in computedTodos" v-bind:key="computedTodo.id">
           <td class="index">{{ index + 1 }}</td>
-          <td class="name">{{ item.name }}</td>
-          <td class="memo">{{ item.memo }}</td>
+          <td class="name">{{ computedTodo.name }}</td>
+          <td class="memo">{{ computedTodo.memo }}</td>
           <!-- 状態変更ボタンここから -->
           <td class="state">
             <button
                 class="btn btn-outline-secondary"
-                v-on:click="doChangeTodoState(item)"
+                v-on:click="doChangeTodoState(computedTodo)"
             >
-              {{ labels[item.state] }}
+              {{ labels[computedTodo.state] }}
             </button>
           </td>
           <!-- 状態変更ボタンここまで -->
@@ -89,7 +90,7 @@
           <td class="delete">
             <button
                 class="btn btn-outline-secondary"
-                v-on:click="doDeleteTodo(item)"
+                v-on:click="doDeleteTodo(computedTodo)"
             >
               削除
             </button>
@@ -109,20 +110,26 @@ import axios from "axios";
 export default {
   data: function () {
     return {
+
       // Todoリスト情報
       todos: [],
+
       // Todoタイトル
       todoTitle: "",
+
       // Todoメモ
       todoMemo: "",
+
       // Todoリスト情報の状態
       current: -1,
+
       // Todoリスト情報の状態一覧
       options: [
         {value: -1, label: "すべて"},
         {value: 0, label: "未実施"},
         {value: 1, label: "実施済"},
       ],
+
       // true：入力済・false：未入力
       isEntered: false,
     };
@@ -130,26 +137,27 @@ export default {
 
   // 算出プロパティ
   computed: {
+
     // Todoリストの状態一覧を表示する
     labels() {
       return this.options.reduce(function (a, b) {
         return Object.assign(a, {[b.value]: b.label});
       }, {});
     },
+
     // 表示対象の情報を返却する
     computedTodos() {
       return this.todos.filter(function (el) {
-        var option = this.current < 0 ? true : this.current === el.state;
-        return option;
+        return this.current < 0 || this.current === el.state;
       }, this);
     },
-    // Unexpected side effect in "validate" computed property
+
     // 入力チェック
     validate() {
-        var isEnteredTodoName = 0 < this.todoTitle.length;
-        this.isEntered = isEnteredTodoName;
-        return isEnteredTodoName;
+      this.isEntered = 0 < this.todoTitle.length;
+      return this.isEntered;
     },
+
   },
 
   // インスタンス作成時の処理
@@ -159,91 +167,92 @@ export default {
 
   // メソッド定義
   methods: {
+
     // 全てのTodoリスト情報を取得する
     doFetchAllTodos() {
       axios.get("/gin/fetchAllTodos").then((response) => {
-        if (response.status != 200) {
-          throw new Error("レスポンスエラー");
+        if (response.status = 200) {
+          this.todos = response.data;
         } else {
-          var resultTodos = response.data;
-
-          // サーバから取得したTodoリスト情報をdataに設定する
-          this.todos = resultTodos;
+          throw new Error("レスポンスエラー");
         }
       });
     },
+
     // １つのTodoリスト情報を取得する
     doFetchTodo(todo) {
       axios
           .get("/gin/fetchTodo", {
             params: {
-              todoID: todo.id,
+              todoId: todo.id,
             },
           })
           .then((response) => {
-            if (response.status != 200) {
-              throw new Error("レスポンスエラー");
-            } else {
-              var resultTodo = response.data;
-
+            if (response.status = 200) {
               // 選択されたTodoリスト情報のインデックスを取得する
-              var index = this.todos.indexOf(todo);
-
+              const index = this.todos.indexOf(todo);
               // spliceを使うとdataプロパティの配列の要素をリアクティブに変更できる
-              this.todos.splice(index, 1, resultTodo[0]);
+              this.todos.splice(index, 1, response.data[0]);
+            } else {
+              throw new Error("レスポンスエラー");
             }
           });
     },
+
     // Todoリスト情報を登録する
     doAddTodo() {
       // サーバへ送信するパラメータ
-      const params = new URLSearchParams();
-      params.append("todoTitle", this.todoTitle);
-      params.append("todoMemo", this.todoMemo);
+      const params = new URLSearchParams(
+          {
+            "todoTitle": this.todoTitle,
+            "todoMemo": this.todoMemo
+          });
 
       axios.post("/gin/addTodo", params).then((response) => {
-        if (response.status != 200) {
-          throw new Error("レスポンスエラー");
-        } else {
-          // Todoリスト情報を取得する
+        if (response.status = 200) {
           this.doFetchAllTodos();
-
-          // 入力値を初期化する
           this.initInputValue();
+        } else {
+          throw new Error("レスポンスエラー");
         }
       });
     },
+
     // Todoリスト情報の状態を変更する
     doChangeTodoState(todo) {
       // サーバへ送信するパラメータ
-      const params = new URLSearchParams();
-      params.append("todoID", todo.id);
-      params.append("todoState", todo.state);
+      const params = new URLSearchParams({
+            "todoId": todo.id,
+            "todoState": todo.state,
+          }
+      );
 
       axios.post("/gin/changeStateTodo", params).then((response) => {
-        if (response.status != 200) {
-          throw new Error("レスポンスエラー");
-        } else {
-          // Todoリスト情報を取得する
+        if (response.status = 200) {
           this.doFetchTodo(todo);
+        } else {
+          throw new Error("レスポンスエラー");
         }
       });
     },
+
     // Todoリスト情報を削除する
     doDeleteTodo(todo) {
       // サーバへ送信するパラメータ
-      const params = new URLSearchParams();
-      params.append("todoID", todo.id);
-
+      const params = new URLSearchParams(
+          {
+            "todoId": todo.id,
+          }
+      );
       axios.post("/gin/deleteTodo", params).then((response) => {
-        if (response.status != 200) {
-          throw new Error("レスポンスエラー");
-        } else {
-          // Todoリスト情報を取得する
+        if (response.status = 200) {
           this.doFetchAllTodos();
+        } else {
+          throw new Error("レスポンスエラー");
         }
       });
     },
+
     // 入力値を初期化する
     initInputValue() {
       this.current = -1;
@@ -252,5 +261,4 @@ export default {
     },
   },
 }
-
 </script>
