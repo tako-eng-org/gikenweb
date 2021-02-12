@@ -61,11 +61,13 @@
       <table class="table">
         <!-- テーブルヘッダここから -->
         <thead class="thead-light" v-pre>
-        <th class="index" style="width: 10%">No</th>
-        <th class="name" style="width: 25%">タイトル</th>
-        <th class="memo" style="width: 25%">メモ</th>
-        <th class="state" style="width: 20%">状態</th>
-        <th class="delete" style="width: 20%">削除</th>
+        <tr>
+          <th class="index" style="width: 10%">No</th>
+          <th class="name" style="width: 25%">タイトル</th>
+          <th class="memo" style="width: 25%">メモ</th>
+          <th class="state" style="width: 20%">状態</th>
+          <th class="delete" style="width: 20%">削除</th>
+        </tr>
         </thead>
         <!-- テーブルヘッダここまで -->
         <!-- テーブルボディここから -->
@@ -139,16 +141,14 @@ export default {
     // 表示対象の情報を返却する
     computedTodos() {
       return this.todos.filter(function (el) {
-        var option = this.current < 0 ? true : this.current === el.state;
-        return option;
+        return this.current < 0 ? true : this.current === el.state;
       }, this);
     },
-    // Unexpected side effect in "validate" computed property
     // 入力チェック
     validate() {
-        var isEnteredTodoName = 0 < this.todoTitle.length;
-        this.isEntered = isEnteredTodoName;
-        return isEnteredTodoName;
+      const isEnteredTodoName = 0 < this.todoTitle.length;
+      this.isEntered = isEnteredTodoName;
+      return isEnteredTodoName;
     },
   },
 
@@ -162,13 +162,11 @@ export default {
     // 全てのTodoリスト情報を取得する
     doFetchAllTodos() {
       axios.get("/gin/fetchAllTodos").then((response) => {
-        if (response.status != 200) {
-          throw new Error("レスポンスエラー");
-        } else {
-          var resultTodos = response.data;
-
+        if (response.status = 200) {
           // サーバから取得したTodoリスト情報をdataに設定する
-          this.todos = resultTodos;
+          this.todos = response.data;
+        } else {
+          throw new Error("レスポンスエラー");
         }
       });
     },
@@ -177,70 +175,74 @@ export default {
       axios
           .get("/gin/fetchTodo", {
             params: {
-              todoID: todo.id,
+              todoId: todo.id,
             },
           })
           .then((response) => {
-            if (response.status != 200) {
-              throw new Error("レスポンスエラー");
-            } else {
-              var resultTodo = response.data;
-
+            if (response.status = 200) {
               // 選択されたTodoリスト情報のインデックスを取得する
-              var index = this.todos.indexOf(todo);
-
+              const index = this.todos.indexOf(todo);
               // spliceを使うとdataプロパティの配列の要素をリアクティブに変更できる
-              this.todos.splice(index, 1, resultTodo[0]);
+              this.todos.splice(index, 1, response.data[0]);
+            } else {
+              throw new Error("レスポンスエラー");
             }
           });
     },
     // Todoリスト情報を登録する
     doAddTodo() {
       // サーバへ送信するパラメータ
-      const params = new URLSearchParams();
-      params.append("todoTitle", this.todoTitle);
-      params.append("todoMemo", this.todoMemo);
+      const params = new URLSearchParams(
+          // params.append("todoTitle", this.todoTitle);
+          // params.append("todoMemo", this.todoMemo);
+          {
+            "todoTitle": this.todoTitle,
+            "todoMemo": this.todoMemo
+          });
 
       axios.post("/gin/addTodo", params).then((response) => {
-        if (response.status != 200) {
-          throw new Error("レスポンスエラー");
-        } else {
+        if (response.status = 200) {
           // Todoリスト情報を取得する
           this.doFetchAllTodos();
-
           // 入力値を初期化する
           this.initInputValue();
+        } else {
+          throw new Error("レスポンスエラー");
         }
       });
     },
     // Todoリスト情報の状態を変更する
     doChangeTodoState(todo) {
       // サーバへ送信するパラメータ
-      const params = new URLSearchParams();
-      params.append("todoID", todo.id);
-      params.append("todoState", todo.state);
+      const params = new URLSearchParams({
+            "todoId": todo.id,
+            "todoState": todo.state,
+          }
+      );
 
       axios.post("/gin/changeStateTodo", params).then((response) => {
-        if (response.status != 200) {
-          throw new Error("レスポンスエラー");
-        } else {
+        if (response.status = 200) {
           // Todoリスト情報を取得する
           this.doFetchTodo(todo);
+        } else {
+          throw new Error("レスポンスエラー");
         }
       });
     },
     // Todoリスト情報を削除する
     doDeleteTodo(todo) {
       // サーバへ送信するパラメータ
-      const params = new URLSearchParams();
-      params.append("todoID", todo.id);
-
+      const params = new URLSearchParams(
+          {
+            "todoId": todo.id,
+          }
+      );
       axios.post("/gin/deleteTodo", params).then((response) => {
-        if (response.status != 200) {
-          throw new Error("レスポンスエラー");
-        } else {
+        if (response.status = 200) {
           // Todoリスト情報を取得する
           this.doFetchAllTodos();
+        } else {
+          throw new Error("レスポンスエラー");
         }
       });
     },
@@ -252,5 +254,4 @@ export default {
     },
   },
 }
-
 </script>

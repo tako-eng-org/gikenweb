@@ -4,6 +4,9 @@ import (
 	// フォーマットI/O
 	"fmt"
 
+	// osI/O
+	"os"
+
 	// Go言語のORM
 	"github.com/jinzhu/gorm"
 
@@ -13,14 +16,42 @@ import (
 	// postgres用ライブラリ。importしないと下記エラーを出力する。
 	// sql: unknown driver "postgres" (forgotten import?)
 	_ "github.com/lib/pq"
+
+	// envファイルを取り扱う
+	"github.com/joho/godotenv"
 )
 
 // DB接続する
 func open() *gorm.DB {
-	//ローカル開発用
-	db, err := gorm.Open("postgres", "host=postgres port=5432 user=root password=password dbname=todo sslmode=disable")
-	// RDS用
-	//db, err := gorm.Open("postgres", "host=gikenweb-db1.c5t2snwrws8q.us-east-2.rds.amazonaws.com port=5432 user=postgres password=password dbname=todo sslmode=disable")
+	// .envファイルから環境変数を読み出す
+	fileEnv := godotenv.Load(fmt.Sprintf("./%s.env", os.Getenv("GO_ENV")))
+
+	// .env読めなかった場合の処理
+	if fileEnv != nil {
+		fmt.Println(fileEnv)
+	}
+
+	// DB接続のための環境変数を設定する
+	//env := os.Getenv("ENV")
+	DbRdbmsName := os.Getenv("RDBMS_NAME")
+	DbHost := os.Getenv("DB_HOST")
+	DbPort := os.Getenv("DB_PORT")
+	DbUser := os.Getenv("DB_USER")
+	DbPass := os.Getenv("DB_PASS")
+	DbName := os.Getenv("DB_NAME")
+	DbSslmode := os.Getenv("DB_SSLMODE")
+
+	//fmt.Println(env)
+
+	// DB接続 ローカル開発用
+	db, err := gorm.Open(DbRdbmsName,
+		"host= "+DbHost+
+			" port="+DbPort+
+			" user="+DbUser+
+			" password="+DbPass+
+			" dbname="+DbName+
+			" sslmode="+DbSslmode)
+	//db, err := gorm.Open("postgres", "host=postgres port=5432 user=root password=password dbname=todo sslmode=disable")
 	// EC2用
 	//db, err := gorm.Open("postgres", "host=localhost port=5432 user=postgres dbname=todo sslmode=disable")
 
@@ -40,7 +71,9 @@ func open() *gorm.DB {
 	// マイグレーション（テーブルが無い時は自動生成）
 	db.AutoMigrate(&entity.Todo{})
 
+	//fmt.Println("db connected: ", &db)
 	fmt.Println("db connected: ", &db)
+
 	return db
 }
 
@@ -59,18 +92,18 @@ func FindAllTodos() []entity.Todo {
 }
 
 // FindTodo は Todoリストテーブルのレコードを１件取得する
-func FindTodo(todoID int) []entity.Todo {
+func FindTodo(todoId int) []entity.Todo {
 	todo := []entity.Todo{}
 
 	db := open()
 	// select
-	db.First(&todo, todoID)
+	db.First(&todo, todoId)
 	defer db.Close()
 
 	return todo
 }
 
-// InsertTodo は Todoリストテーブルにレコードを追加する
+// InsertTodo は Todoリストテーブルにレコードを登録する
 func InsertTodo(registerTodo *entity.Todo) {
 	db := open()
 	// insert
@@ -79,21 +112,21 @@ func InsertTodo(registerTodo *entity.Todo) {
 }
 
 // UpdateStateTodo は Todoリストテーブルの指定したレコードの状態を変更する
-func UpdateStateTodo(todoID int, todoState int) {
+func UpdateStateTodo(todoId int, todoState int) {
 	todo := []entity.Todo{}
 
 	db := open()
 	// update
-	db.Model(&todo).Where("ID = ?", todoID).Update("state", todoState)
+	db.Model(&todo).Where("ID = ?", todoId).Update("state", todoState)
 	defer db.Close()
 }
 
 // DeleteTodo は Todoリストテーブルの指定したレコードを削除する
-func DeleteTodo(todoID int) {
+func DeleteTodo(todoId int) {
 	todo := []entity.Todo{}
 
 	db := open()
 	// delete
-	db.Delete(&todo, todoID)
+	db.Delete(&todo, todoId)
 	defer db.Close()
 }

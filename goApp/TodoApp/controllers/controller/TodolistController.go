@@ -14,13 +14,10 @@ import (
 	db "../../models/db"
 )
 
-// Todoリストの購入状態を定義
+// Todoリストの実施状態を定義する
 const (
-	// NotPurchased は 未実施
-	NotPurchased = 0
-
-	// Purchased は 実施済
-	Purchased = 1
+	Waiting   = 0 // 未実施
+	Completed = 1 // 実施済
 )
 
 // FetchAllTodos は 全てのTodoリスト情報を取得する
@@ -33,7 +30,7 @@ func FetchAllTodos(c *gin.Context) {
 
 // FindTodo は 指定したIDのTodoリスト情報を取得する
 func FindTodo(c *gin.Context) {
-	todoIDStr := c.Query("todoID")
+	todoIDStr := c.Query("todoId")
 
 	todoID, _ := strconv.Atoi(todoIDStr)
 
@@ -48,10 +45,11 @@ func AddTodo(c *gin.Context) {
 	todoTitle := c.PostForm("todoTitle")
 	todoMemo := c.PostForm("todoMemo")
 
+	// テーブルに登録するためのレコード情報
 	var todo = entity.Todo{
 		Name:  todoTitle,
 		Memo:  todoMemo,
-		State: NotPurchased,
+		State: Waiting,
 	}
 
 	db.InsertTodo(&todo)
@@ -59,18 +57,15 @@ func AddTodo(c *gin.Context) {
 
 // ChangeStateTodo は Todoリスト情報の状態を変更する
 func ChangeStateTodo(c *gin.Context) {
-	reqTodoID := c.PostForm("todoID")
+	reqTodoID := c.PostForm("todoId")
 	reqTodoState := c.PostForm("todoState")
 
 	todoID, _ := strconv.Atoi(reqTodoID)
 	todoState, _ := strconv.Atoi(reqTodoState)
-	changeState := NotPurchased
-
-	// Todoリスト状態が未実施の場合
-	if todoState == NotPurchased {
-		changeState = Purchased
-	} else {
-		changeState = NotPurchased
+	changeState := Waiting
+	// Todoリスト状態が未実施の場合、実施済へ変更する
+	if todoState == Waiting {
+		changeState = Completed
 	}
 
 	db.UpdateStateTodo(todoID, changeState)
@@ -78,7 +73,7 @@ func ChangeStateTodo(c *gin.Context) {
 
 // DeleteTodo は Todoリスト情報をDBから削除する
 func DeleteTodo(c *gin.Context) {
-	todoIDStr := c.PostForm("todoID")
+	todoIDStr := c.PostForm("todoId")
 
 	todoID, _ := strconv.Atoi(todoIDStr)
 
