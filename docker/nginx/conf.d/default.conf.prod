@@ -1,6 +1,8 @@
 server {
-    listen       443;
     server_name  tako-eng.com;
+    listen       80 default_server;
+    listen       [::]:80 default_server;
+    listen       443 ssl;
 
     ssl_certificate "/etc/letsencrypt/live/tako-eng.com/fullchain.pem";
     ssl_certificate_key "/etc/letsencrypt/live/tako-eng.com/privkey.pem";
@@ -17,8 +19,8 @@ server {
         proxy_pass http://localhost:8080/;
     }
 
-    locaiton /express/ {
-        Proxy_pass http://localhost:3000/;
+    location /express/ {
+        proxy_pass http://localhost:3000/;
     }
 
     #error_page  404              /404.html;
