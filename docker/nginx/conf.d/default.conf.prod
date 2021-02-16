@@ -1,0 +1,35 @@
+server {
+    server_name  tako-eng.com;
+    listen       80 default_server;
+    listen       [::]:80 default_server;
+    listen       443 ssl;
+
+    ssl_certificate "/etc/letsencrypt/live/tako-eng.com/fullchain.pem";
+    ssl_certificate_key "/etc/letsencrypt/live/tako-eng.com/privkey.pem";
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+        root   /var/www/html;
+        index  index.html index.htm;
+    }
+
+    location /gin/ {
+        proxy_pass http://localhost:8080/;
+    }
+
+    location /express/ {
+        proxy_pass http://localhost:3000/;
+    }
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+
