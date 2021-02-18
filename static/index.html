@@ -1,206 +1,183 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <!-- bootstrap header -->
     <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- bootstrap start-->
     <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
+            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"
     ></script>
     <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"
     ></script>
     <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"
     ></script>
     <!-- bootstrap end-->
     <title>home | 技研ウェブ</title>
-  </head>
+</head>
 
-  <body style="padding-top: 60px">
-    <header>
-      <div class="fixed-top">
+<body style="padding-top: 60px">
+<header>
+    <div class="fixed-top">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-          <!-- navbar-brand ... メインの項目 -->
-          <a class="navbar-brand" href="index.html">技研ウェブ</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#topNavbar"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div id="topNavbar" class="collapse navbar-collapse">
-            <!-- navbar-nav ... ナビゲーション部分 -->
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="aboutme.html">自己紹介</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="portforio.html">ポートフォリオ</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#">工事中</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html">お問い合わせ</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </header>
-
-    <main class="mt-3">
-      <!-- 開始 カレンダーアプリ -->
-      <section>
-        <div class="container">
-          <link rel="stylesheet" href="css/styles.css" />
-          <table>
-            <thead>
-              <tr>
-                <th id="prev">&laquo;</th>
-                <th id="title" colspan="5">2020/05</th>
-                <th id="next">&raquo;</th>
-              </tr>
-              <tr>
-                <th>Sun</th>
-                <th>Mon</th>
-                <th>Tue</th>
-                <th>Wed</th>
-                <th>Thu</th>
-                <th>Fri</th>
-                <th>Sat</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot>
-              <tr>
-                <td id="today" colspan="7">Today</td>
-              </tr>
-            </tfoot>
-          </table>
-          <script src="js/calender.js"></script>
-        </div>
-      </section>
-      <!-- 終了 カレンダーアプリ -->
-
-      <!-- 開始 今日の日付 -->
-      <section>
-        <div class="container">
-          <!-- <p class="date">20xx/01/01</p> -->
-          <script>
-            // 日付を表示する
-            var today = new Date();
-            var dayOfWeek = today.getDay();
-            var dayOfWeekStr = ["日", "月", "火", "水", "木", "金", "土"][
-              dayOfWeek
-            ];
-            var todayHtml =
-              today.getFullYear() +
-              "-" +
-              (today.getMonth() + 1) +
-              "-" +
-              today.getDate();
-            document.write(
-              '<p class="date">' + todayHtml + "(" + dayOfWeekStr + ")</p>"
-            );
-          </script>
-        </div>
-      </section>
-      <!-- 終了 今日の日付 -->
-
-      <!-- 開始 新着情報(見出し) -->
-      <section>
-        <div class="container">
-          <div class="row">
-            <div class="col">
-              <h3>新着情報</h3>
-              <ul>
-                <li>
-                  <a href="#info0001"> ポートフォリオページを公開しました。</a>
-                </li>
-                <li>
-                  <a href="#info0002"> 自己紹介ページを更新しました。</a>
-                </li>
-                <li>
-                  <a href="#info0003"> お問い合わせページを公開しました。</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- 終了 新着情報(見出し) -->
-
-      <!-- 開始 タイマーアプリ -->
-      <section>
-        <div class="container">
-          <hr />
-          <p>ちょっと休憩用</p>
-          <p id="timer">00:00:00</p>
-          <div>
-            <button id="start_stop" class="btn btn-sm btn-primary">
-              START
+            <!-- navbar-brand ... メインの項目 -->
+            <a class="navbar-brand" href="index.html">技研ウェブ</a>
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#topNavbar"
+            >
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <script src="js/timer.js"></script>
-          </div>
-          <hr />
-        </div>
-      </section>
-      <!-- 終了 タイマーアプリ -->
+            <div id="topNavbar" class="collapse navbar-collapse">
+                <!-- navbar-nav ... ナビゲーション部分 -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutme.html">自己紹介</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="portforio.html">ポートフォリオ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">工事中</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">お問い合わせ</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
 
-      <!-- 開始 新着情報(詳細) -->
-      <section>
+<main class="mt-3">
+    <!-- 開始 カレンダーアプリ -->
+    <!--    <section>-->
+    <!--        <div class="container">-->
+    <!--            <link rel="stylesheet" href="css/styles.css"/>-->
+    <!--            <table>-->
+    <!--                <thead>-->
+    <!--                <tr>-->
+    <!--                    <th id="prev">&laquo;</th>-->
+    <!--                    <th id="title" colspan="5">2020/05</th>-->
+    <!--                    <th id="next">&raquo;</th>-->
+    <!--                </tr>-->
+    <!--                <tr>-->
+    <!--                    <th>Sun</th>-->
+    <!--                    <th>Mon</th>-->
+    <!--                    <th>Tue</th>-->
+    <!--                    <th>Wed</th>-->
+    <!--                    <th>Thu</th>-->
+    <!--                    <th>Fri</th>-->
+    <!--                    <th>Sat</th>-->
+    <!--                </tr>-->
+    <!--                </thead>-->
+    <!--                <tbody></tbody>-->
+    <!--                <tfoot>-->
+    <!--                <tr>-->
+    <!--                    <td id="today" colspan="7">Today</td>-->
+    <!--                </tr>-->
+    <!--                </tfoot>-->
+    <!--            </table>-->
+    <!--            <script src="js/calender.js"></script>-->
+    <!--        </div>-->
+    <!--    </section>-->
+    <!-- 終了 カレンダーアプリ -->
+
+    <!-- 開始 今日の日付 -->
+    <section>
         <div class="container">
-          <div class="row mb-4">
-            <div class="col">
-              <p class="font-weight-bold" id="info0001">
-                2020-11-23 ポートフォリオページを公開しました。
-              </p>
-              <p>ぜひご覧ください。</p>
-            </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col">
-              <p class="font-weight-bold" id="info0002">
-                2020-05-10 自己紹介ページを更新しました。
-              </p>
-              <p>ぜひご覧ください。</p>
-            </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col">
-              <p class="font-weight-bold" id="info0003">
-                2020-04-27 お問い合わせページを公開しました。
-              </p>
-              <p>なんでもお問い合わせください。</p>
-            </div>
-          </div>
+            <!-- <p class="date">20xx/01/01</p> -->
+            <script src="js/today.js"></script>
         </div>
-      </section>
-      <!-- 終了 新着情報(詳細) -->
-    </main>
+    </section>
+    <!-- 終了 今日の日付 -->
 
-    <!-- <footer class="fixed-bottom text-center">
-      <div class="container">
-        <p>&copy;技研ウェブ</p>
-      </div>
-    </footer> -->
-  </body>
+    <!-- 開始 タイマーアプリ -->
+    <section>
+        <div class="container">
+            <a>ちょっと休憩用</a>
+            <a id="timer">00:00:00</a>
+            <div>
+                <button id="start_stop" class="btn btn-sm btn-primary">
+                    START
+                </button>
+                <script src="js/timer.js"></script>
+            </div>
+        </div>
+    </section>
+    <!-- 終了 タイマーアプリ -->
+    <hr/>
+
+    <!-- 開始 新着情報(見出し) -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3>新着情報</h3>
+                    <ul>
+                        <li>
+                            <a href="#info0001"> ポートフォリオページを公開しました。</a>
+                        </li>
+                        <li>
+                            <a href="#info0002"> 自己紹介ページを更新しました。</a>
+                        </li>
+                        <li>
+                            <a href="#info0003"> お問い合わせページを公開しました。</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 終了 新着情報(見出し) -->
+
+    <!-- 開始 新着情報(詳細) -->
+    <section>
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col">
+                    <a class="font-weight-bold" id="info0001">
+                        2020-11-23 ポートフォリオページを公開しました。
+                    </a><br>
+                    <a>ぜひご覧ください。</a>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <a class="font-weight-bold" id="info0002">
+                        2020-05-10 自己紹介ページを更新しました。
+                    </a><br>
+                    <a>ぜひご覧ください。</a>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <a class="font-weight-bold" id="info0003">
+                        2020-04-27 お問い合わせページを公開しました。
+                    </a><br>
+                    <a>なんでもお問い合わせください。</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 終了 新着情報(詳細) -->
+</main>
+</body>
 </html>
