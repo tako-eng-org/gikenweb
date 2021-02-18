@@ -5,6 +5,7 @@ express-app/node_modules
 .idea/
 *__debug_bin
 /goApp/TodoApp/server_todo_app
+/goApp/TodoApp/.env
 
 # docker
 docker/postgres/pgdata
