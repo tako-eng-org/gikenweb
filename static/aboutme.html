@@ -27,27 +27,7 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
-
-    <!-- 画像紹介 -->
-    <script>
-      var currentNum = 0;
-      var files = [];
-      for (var i = 1; i <= 4; i++) {
-        var file = "images/inu/inu_00" + i + ".jpg";
-        files.push(file);
-      }
-      var photoElement;
-      document.addEventListener("DOMContentLoaded", function () {
-        photoElement = document.getElementById("photo");
-        photoElement.addEventListener("click", function () {
-          ++currentNum;
-          currentNum %= files.length;
-          var photo = files[currentNum];
-          photoElement.setAttribute("src", photo);
-        });
-      });
-    </script>
-
+    <!-- bootstrap end-->
     <title>自己紹介 | 技研ウェブ</title>
   </head>
 
@@ -201,4 +181,25 @@
       </div>
     </footer> -->
   </body>
+
+  <!-- 画像紹介 -->
+  <script>
+    var currentNum = 0;
+    var files = [];
+    for (var i = 1; i <= 4; i++) {
+      var file = "images/inu/inu_00" + i + ".jpg";
+      files.push(file);
+    }
+    var photoElement;
+    document.addEventListener("DOMContentLoaded", function () {
+      photoElement = document.getElementById("photo");
+      photoElement.addEventListener("click", function () {
+        ++currentNum;
+        currentNum %= files.length;
+        var photo = files[currentNum];
+        photoElement.setAttribute("src", photo);
+      });
+    });
+  </script>
+
 </html>
