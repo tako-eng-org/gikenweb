@@ -19,6 +19,10 @@ server {
         proxy_pass http://localhost:8080/;
     }
 
+    location /bbs/ {
+        proxy_pass http://localhost:8085/;
+    }
+
     location /express/ {
         proxy_pass http://localhost:3000/;
     }
