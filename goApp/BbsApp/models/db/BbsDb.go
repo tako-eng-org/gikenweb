@@ -61,7 +61,7 @@ func open() *gorm.DB {
 }
 
 // Todoリストテーブルのレコードを全件取得する
-func FindAllBbs() []entity.Bbs {
+func FindAllRecords() []entity.Bbs {
 	bbsRecords := []entity.Bbs{}
 
 	db := open()
