@@ -32,11 +32,10 @@ func serve() {
 
 	// ルーターの設定
 	// URLへのアクセスに対して静的ページを返す
-	//router.StaticFS("/todoapp", http.Dir("./views/static"))
 	router.StaticFS("/bbsapp", http.Dir("./frontend/dist"))
 
 	// 全てのJSONを返す
-	router.GET("/fetchAllBbs", controller.FetchAllBbs)
+	router.GET("/fetchAllRecords", controller.FetchAllRecords)
 
 	router.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"message": "Page not Found!!"})
