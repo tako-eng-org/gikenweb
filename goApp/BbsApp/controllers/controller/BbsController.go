@@ -15,9 +15,9 @@ import (
 )
 
 // 全てのTodoリスト情報を取得する
-func FetchAllBbs(c *gin.Context) {
-	resultBbs := db.FindAllBbs()
+func FetchAllRecords(c *gin.Context) {
+	result := db.FindAllRecords()
 
 	// URLへのアクセスに対してJSONを返す
-	c.JSON(200, resultBbs)
+	c.JSON(200, result)
 }
