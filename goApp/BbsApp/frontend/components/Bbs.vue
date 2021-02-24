@@ -144,6 +144,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -167,6 +169,12 @@ export default {
       ],
       show: true
     }
+  },
+
+  computed:{
+    created: function () {
+      this.doFetchAllRecords();
+    },
   },
 
   methods: {
@@ -203,7 +211,18 @@ export default {
 
       // TODO その他のバリデーションチェック
 
-    }
+    },
+
+    // 全てのTodoリスト情報を取得する
+    doFetchAllRecords() {
+      axios.get("/bbs/fetchAllRecords").then((response) => {
+        if (response.status = 200) {
+          this.todos = response.data;
+        } else {
+          throw new Error("レスポンスエラー");
+        }
+      });
+    },
   }
 }
 </script>
