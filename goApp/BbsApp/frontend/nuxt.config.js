@@ -1,11 +1,5 @@
 // const envSettings = require(`./env.${process.env.NODE_ENV}.js`)
 export default {
-  // env: envSettings,
-  // あってるか不明2021/02/22
-  // publicPath: process.env.NODE_ENV === 'production'
-  //   ? '/bbs'
-  //   : '/',
-
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -43,13 +37,21 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv',
   ],
+
+  // dotenvのオプションを設定する
+  dotenv: {
+    /* module options */
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     proxy: true,
     prefix: '/bbs',
   },
+
   proxy: {
     '/bbs/': {
       target: 'http://localhost:8085',
@@ -61,6 +63,10 @@ export default {
   build: {},
 
   router: {
-    base: '/bbs/bbsapp'
+    // .env.local or prod にて環境変数NODE_ENVを設定し、
+    // モードによってルートパスを切り替える。
+    base: process.env.NODE_ENV === 'production'
+      ? '/bbs/bbsapp'
+      : '/',
   }
 }
