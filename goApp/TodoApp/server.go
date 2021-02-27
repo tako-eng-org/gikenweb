@@ -14,7 +14,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 
 	// コントローラー
-	controller "./controllers/controller"
+	controller "server/controllers/controller"
 )
 
 func main() {
