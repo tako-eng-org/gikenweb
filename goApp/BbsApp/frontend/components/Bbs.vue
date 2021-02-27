@@ -24,6 +24,26 @@
         </b-form-group>
         <!-- テーマ -->
 
+        <!-- タイトル -->
+        <b-form-group id="input-group-2"
+                      label="タイトル:"
+                      label-for="input-2"
+                      content-cols-sm
+                      label-cols-sm="1"
+                      label-cols-lg="1"
+                      content-cols-lg="6"
+        >
+          <b-form-input
+            id="input-2"
+            class="mb-2 mr-sm-2 mb-sm-0"
+            v-model="form.title"
+            placeholder=""
+            maxlength='100'
+            required
+          ></b-form-input>
+        </b-form-group>
+        <!-- タイトル -->
+
         <!-- 名前 -->
         <b-form-group id="input-group-2"
                       label="名前:"
@@ -132,8 +152,30 @@
         <b-button type="reset" variant="danger">内容と画像をクリア</b-button>
       </b-form>
 
-      <!--    デバッグ用。送信内容を表示する start-->
       <p>************************************************************</p>
+      <!-- レコード表示 -->
+      <div class="container">
+        <table class="table">
+          <thead class="thead-light" v-pre>
+          <tr>
+            <!-- TODO bootstarp-vueに書き直し -->
+            <th class="postid" style="width: 10%">投稿ID</th>
+            <th class="theme" style="width: 25%">テーマ</th>
+            <th class="name" style="width: 25%">名前</th>
+            <th class="detail" style="width: 20%">内容</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(computedRecord, index) in computedRecords" v-bind:key="computedRecord.id">
+            <td class="index">{{ index + 1 }}</td>
+            <td class="name">{{ computedRecord.name }}</td>
+            <td class="memo">{{ computedRecord.detail }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>************************************************************</p>
+      <!--    デバッグ用。送信内容を表示する start-->
       <b-card class="mt-3" header="デバッグ用">
         <pre class="m-0">{{ form }}</pre>
       </b-card>
@@ -147,10 +189,14 @@
 import axios from "axios";
 
 export default {
-  data() {
+  data: function () {
     return {
+      // 投稿した情報
+      records: [],
+
       form: {
         theme: null,
+        title: '',
         name: '',
         detail: '',
         file1: '',
@@ -171,10 +217,19 @@ export default {
     }
   },
 
-  computed:{
-    created: function () {
-      this.doFetchAllRecords();
+  computed: {
+    // 表示対象の情報を返却する
+    computedRecords() {
+      console.log(this.records);
+      return this.records.filter(function (el) {
+      // return this.current < 0 || this.current === el.state;
+      }, this);
     },
+
+  },
+
+  created: function () {
+    this.doFetchAllRecords();
   },
 
   methods: {
@@ -217,7 +272,8 @@ export default {
     doFetchAllRecords() {
       axios.get("/bbs/fetchAllRecords").then((response) => {
         if (response.status = 200) {
-          this.todos = response.data;
+          this.records = response.data;
+          console.log(this.records);
         } else {
           throw new Error("レスポンスエラー");
         }
