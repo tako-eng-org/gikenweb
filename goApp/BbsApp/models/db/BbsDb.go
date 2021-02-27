@@ -11,7 +11,7 @@ import (
 	"github.com/jinzhu/gorm"
 
 	// エンティティ(データベースのテーブルの行に対応)
-	entity "../entity"
+	entity "server/models/entity"
 
 	// postgres用ライブラリ。importしないと下記エラーを出力する。
 	// sql: unknown driver "postgres" (forgotten import?)

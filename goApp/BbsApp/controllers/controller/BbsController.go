@@ -11,7 +11,7 @@ import (
 	//entity "../../models/entity"
 
 	// DBアクセス用モジュール
-	db "../../models/db"
+	db "server/models/db"
 )
 
 // 全てのTodoリスト情報を取得する
