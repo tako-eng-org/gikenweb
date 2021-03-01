@@ -2,12 +2,6 @@ FROM golang:1.15-alpine as dev
 
 RUN apk update \
   && apk add --no-cache git \
-  && apk add yarn \
-  && cd ./frontend \
-  && yarn build
-
-# go.modをgo build時に実行するための環境変数設定
-ENV GO111MODULE=on
 
 # TODO 不要なステートメントを削除する
 # go.modで管理するため、コメントアウトした。削除予定2021/02/27
@@ -21,5 +15,8 @@ ARG APP_DIR=app
 
 COPY ./ /${APP_DIR}
 WORKDIR /${APP_DIR}
+
+# イメージ作成後、コンテナ起動のたびに実行する
+#CMD [ "./sakusei.sh" ]
 
 EXPOSE 8080
