@@ -33,6 +33,7 @@ jobs:
       - name: todoApp_frontend_Build
         run: |
           cd $GITHUB_WORKSPACE/goApp/TodoApp/frontend
+          yarn add @vue/cli
           yarn build
 
       - name: bbsApp_go_Build
