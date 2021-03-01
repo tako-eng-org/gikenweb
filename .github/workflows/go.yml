@@ -5,14 +5,14 @@ name: Go
 on:
   push:
     branches: [ feature/38 ]
-#    paths:
-#      - '**.go'
+  #    paths:
+  #      - '**.go'
   pull_request:
     branches: [ feature/38 ]
 
 jobs:
   build:
-#    env: ${{ }}
+    #    env: ${{ }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,8 +22,10 @@ jobs:
         with:
           go-version: 1.15
 
-      - name: Build
-        run: go build -v -o /home/runner/work/goApp/TodoApp/server.go
+      - name: Build___test
+        run:
+        pwd
+        go build -v -o ${GITHUB_WORKSPACE}/goApp/TodoApp
 
 #      - name: Test
 #        run: go test -v ./...
