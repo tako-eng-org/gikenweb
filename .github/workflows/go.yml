@@ -25,7 +25,6 @@ jobs:
       - name: Build
         run:
         pwd
-        echo "*****test*****"
         go build -v -o ${GITHUB_WORKSPACE}/goApp/TodoApp
 
 #      - name: Test
