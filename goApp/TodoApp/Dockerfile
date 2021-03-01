@@ -1,7 +1,10 @@
 FROM golang:1.15-alpine as dev
 
 RUN apk update \
-  && apk add --no-cache git
+  && apk add --no-cache git \
+  && apk add yarn \
+  && cd ./frontend \
+  && yarn build
 
 # go.modをgo build時に実行するための環境変数設定
 ENV GO111MODULE=on
