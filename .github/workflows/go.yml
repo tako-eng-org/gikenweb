@@ -25,12 +25,21 @@ jobs:
         with:
           go-version: 1.15
 
-      - name: GoBuild
+      - name: go_todoApp_Build
         run: |
+          echo "******************"
           pwd
+          echo "******************"
           cd $GITHUB_WORKSPACE/goApp/TodoApp
-          pwd
           go build -v -o $GITHUB_WORKSPACE/goApp/TodoApp
+
+      - name: go_bbsApp_Build
+        run: |
+          echo "******************"
+          pwd
+          echo "******************"
+          cd $GITHUB_WORKSPACE/goApp/BbsApp
+          go build -v -o $GITHUB_WORKSPACE/goApp/BbsApp
 
 #      - name: Test
 #        run: go test -v ./...
