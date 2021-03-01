@@ -26,7 +26,7 @@ services:
   bbs_app:
     build:
       context: ./goApp/BbsApp
-    command: go run server.go
+    command: sh -c "./docker_first.sh && go run server.go"
     volumes:
       - ./goApp/BbsApp:/app
     depends_on:
