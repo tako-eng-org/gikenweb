@@ -44,6 +44,7 @@ jobs:
       - name: bbsApp_frontend_Build
         run: |
           cd $GITHUB_WORKSPACE/goApp/BbsApp/frontend
+          yarn add nuxt
           yarn generate
 
 #      - name: Test
