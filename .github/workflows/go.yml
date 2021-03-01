@@ -23,9 +23,7 @@ jobs:
           go-version: 1.15
 
       - name: Build
-        run:
-        pwd
-        go build -v -o $GITHUB_WORKSPACE/goApp/TodoApp
+        run: go build -v -o $GITHUB_WORKSPACE/goApp/TodoApp
 
 #      - name: Test
 #        run: go test -v ./...
