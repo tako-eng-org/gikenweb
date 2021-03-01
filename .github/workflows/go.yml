@@ -3,10 +3,10 @@ name: Go
 
 # ワークフローをトリガーするGitHubイベントの名前
 on:
-  push:
-    branches: [ master ]
+#  push:
+#    branches: [ master ]
   pull_request:
-    branches: [ feature/38 ]
+    branches: [ feature/38, master ]
 
 jobs:
   build:
