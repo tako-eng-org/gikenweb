@@ -22,9 +22,10 @@ jobs:
         with:
           go-version: 1.15
 
-      - name: Build___test
+      - name: Build
         run:
         pwd
+        echo "*****test*****"
         go build -v -o ${GITHUB_WORKSPACE}/goApp/TodoApp
 
 #      - name: Test
