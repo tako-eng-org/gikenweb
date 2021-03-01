@@ -27,6 +27,7 @@ jobs:
 
       - name: todoApp_go_Build
         run: |
+          cd $GITHUB_WORKSPACE/goApp/TodoApp
           go build -v -o $GITHUB_WORKSPACE/goApp/TodoApp
 
       - name: todoApp_frontend_Build
@@ -36,6 +37,7 @@ jobs:
 
       - name: bbsApp_go_Build
         run: |
+          cd $GITHUB_WORKSPACE/goApp/BbsApp
           go build -v -o $GITHUB_WORKSPACE/goApp/BbsApp
 
       - name: bbsApp_frontend_Build
