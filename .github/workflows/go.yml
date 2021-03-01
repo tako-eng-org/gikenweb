@@ -5,8 +5,8 @@ name: Go
 on:
   push:
     branches: [ feature/38 ]
-  #    paths:
-  #      - '**.go'
+  # paths:
+  # - '**.go'
   pull_request:
     branches: [ feature/38 ]
 
@@ -16,14 +16,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        # feature/38にcheckoutする
+        with:
+          ref: feature/38
 
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.15
 
-      - name: Build
-        run: go build -v -o $GITHUB_WORKSPACE/goApp/TodoApp
+      - name: GoBuild
+        run: |
+          pwd
+          cd $GITHUB_WORKSPACE/goApp/TodoApp
+          pwd
+          go build -v -o $GITHUB_WORKSPACE/goApp/TodoApp
 
 #      - name: Test
 #        run: go test -v ./...
