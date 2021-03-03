@@ -1,0 +1,35 @@
+settings:
+  legacy:
+    force: false
+    interval: 0s
+server:
+  status: false               // server status
+  open: false                 // open browser at start
+  host: localhost             // server host
+  port: 8089                  // server port
+schema:
+- name: TodoApp
+  path: .
+  commands:
+    install:
+      status: true
+      method: go build -o server server.go
+    # go runを監視しホットリロードを有効にする
+    run:
+      status: true
+      method: ./server
+    build:
+      status: false
+      method: go build -o server server.go
+  watcher:
+    # 監視ファイルを指定する
+    extensions:
+    - go
+    - html
+    paths:
+    - /
+    ignored_paths:
+    - .git
+    - .realize
+    - vendor
+    - .history
