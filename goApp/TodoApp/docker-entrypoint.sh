@@ -1,5 +1,4 @@
 #!/bin/sh
-
 echo "-----`basename $0`-----"
 
 # realize(ホットリロード)を取得する
@@ -11,10 +10,9 @@ echo "-----realize installed-----"
 export GO111MODULE=on
 
 # アプリサーバをバックグラウンドで実行する
-# realizeでgo run serverを監視するので、このコマンドは不要になる
+# realizeでgo run serverを監視するので不要
 #go run server.go &
 
-# realize起動、localhost:8089で管理画面へアクセス
-#realize start --server
+# realize起動。realize start --serverするとブラウザアクセスもホットリロードもできない2021/03/03
 echo "-----realize start-----"
 realize start
