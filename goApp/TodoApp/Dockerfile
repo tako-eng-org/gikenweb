@@ -1,7 +1,7 @@
 FROM golang:1.15-alpine as dev
 
 RUN apk update \
-  && apk add --no-cache git \
+  && apk add --no-cache git
 
 # TODO 不要なステートメントを削除する
 # go.modで管理するため、コメントアウトした。削除予定2021/02/27
@@ -20,3 +20,5 @@ WORKDIR /${APP_DIR}
 #CMD [ "./sakusei.sh" ]
 
 EXPOSE 8080
+
+ENTRYPOINT [ "/app/docker-entrypoint.sh" ]
