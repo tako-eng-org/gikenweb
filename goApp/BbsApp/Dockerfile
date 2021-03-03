@@ -3,9 +3,6 @@ FROM golang:1.15-alpine as dev
 RUN apk update \
   && apk add --no-cache git
 
-# go.modをgo build時に実行するための環境変数設定
-ENV GO111MODULE=on
-
 # TODO 不要なステートメントを削除する
 # go.modで管理するため、コメントアウトした。削除予定2021/02/27
 # goのパッケージ増やす時(go get)はここに追加して再度ビルド
@@ -20,3 +17,6 @@ COPY ./ /${APP_DIR}
 WORKDIR /${APP_DIR}
 
 EXPOSE 8085
+
+ENTRYPOINT [ "/app/docker-entrypoint.sh" ]
+CMD [ "/sbin/init" ]
