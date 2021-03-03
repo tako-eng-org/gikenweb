@@ -18,7 +18,8 @@ services:
   todo_app:
     build:
       context: ./goApp/TodoApp
-    command: sh -c "./docker_first.sh && go run server.go"
+      # goアプリ側(realize)で処理するため不要
+      # command: go run server.go
     volumes:
       - ./goApp/TodoApp:/app
     depends_on:
@@ -26,7 +27,7 @@ services:
   bbs_app:
     build:
       context: ./goApp/BbsApp
-    command: sh -c "./docker_first.sh && go run server.go"
+    command: go run server.go
     volumes:
       - ./goApp/BbsApp:/app
     depends_on:
