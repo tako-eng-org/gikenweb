@@ -13,3 +13,4 @@ docker/pgadmin/*
 
 # go.modのメタ情報のようなもの
 *go.sum*
+goApp/TodoApp/server
