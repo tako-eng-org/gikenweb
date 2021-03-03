@@ -16,9 +16,7 @@ ARG APP_DIR=app
 COPY ./ /${APP_DIR}
 WORKDIR /${APP_DIR}
 
-# イメージ作成後、コンテナ起動のたびに実行する
-#CMD [ "./sakusei.sh" ]
-
 EXPOSE 8080
 
 ENTRYPOINT [ "/app/docker-entrypoint.sh" ]
+CMD [ "/sbin/init" ]
