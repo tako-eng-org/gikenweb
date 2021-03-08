@@ -54,7 +54,11 @@ export default {
 
   proxy: {
     '/bbs/': {
-      target: 'http://localhost:8085',
+      target: process.env.NODE_ENV === 'production'
+        ? 'http://localhost:8000'
+        : 'http://bbs_app:8000',
+      // ↓の設定ではyarn devで動かない。
+      // target: 'http://localhost:8000',
       logLevel: 'debug'
     },
   },
