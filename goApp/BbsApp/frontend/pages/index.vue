@@ -1,16 +1,16 @@
 <template>
   <div>
-    <Bbs></Bbs>
+    <bbs></bbs>
   </div>
 </template>
 
 <script>
-import bbs from "../components/Bbs";
+import Bbs from '../components/Bbs'
 
 export default {
   components: {
-    Bbs: bbs,
-  }
+    bbs: Bbs,
+  },
 }
 </script>
 
