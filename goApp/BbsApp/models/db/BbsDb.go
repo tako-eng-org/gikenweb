@@ -3,11 +3,11 @@ package db
 import (
 	// フォーマットI/O
 	"fmt"
-	"github.com/jinzhu/gorm"
-	"github.com/joho/godotenv"
-
 	// osI/O
 	"os"
+
+	// Go言語のORM
+	"github.com/jinzhu/gorm"
 
 	// エンティティ(データベースのテーブルの行に対応)
 	entity "server/models/entity"
@@ -15,6 +15,9 @@ import (
 	// postgres用ライブラリ。importしないと下記エラーを出力する。
 	// sql: unknown driver "postgres" (forgotten import?)
 	_ "github.com/lib/pq"
+
+	// envファイルを取り扱う
+	"github.com/joho/godotenv"
 )
 
 // DB接続する
@@ -50,62 +53,30 @@ func open() *gorm.DB {
 	db.SingularTable(true)
 
 	// マイグレーション（テーブルが無い時は自動生成）
-	db.AutoMigrate(&entity.Todo{})
+	db.AutoMigrate(&entity.Bbs{})
 
 	fmt.Println("db connected: ", &db)
 	return db
 }
 
 // Todoリストテーブルのレコードを全件取得する
-func FindAllTodos() []entity.Todo {
-	todos := []entity.Todo{}
+func FindAllRecords() []entity.Bbs {
+	bbsRecords := []entity.Bbs{}
 
 	db := open()
 	// select
-	db.Order("Id asc").Find(&todos)
+	db.Order("post_id asc").Find(&bbsRecords)
 
 	// defer 関数がreturnする時に実行される
 	defer db.Close()
 
-	return todos
-}
-
-// Todoリストテーブルのレコードを１件取得する
-func FindTodo(todoId int) []entity.Todo {
-	todo := []entity.Todo{}
-
-	db := open()
-	// select
-	db.First(&todo, todoId)
-	defer db.Close()
-
-	return todo
+	return bbsRecords
 }
 
 // Todoリストテーブルにレコードを登録する
-func InsertTodo(registerTodo *entity.Todo) {
+func InsertRecord(registerRecord *entity.Bbs) {
 	db := open()
 	// insert
-	db.Create(&registerTodo)
-	defer db.Close()
-}
-
-// Todoリストテーブルの指定したレコードの状態を変更する
-func UpdateStateTodo(todoId int, todoState int) {
-	todo := []entity.Todo{}
-
-	db := open()
-	// update
-	db.Model(&todo).Where("Id = ?", todoId).Update("state", todoState)
-	defer db.Close()
-}
-
-// Todoリストテーブルの指定したレコードを削除する
-func DeleteTodo(todoId int) {
-	todo := []entity.Todo{}
-
-	db := open()
-	// delete
-	db.Delete(&todo, todoId)
+	db.Create(&registerRecord)
 	defer db.Close()
 }

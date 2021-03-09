@@ -8,10 +8,10 @@ import (
 	"github.com/gin-gonic/gin"
 
 	// エンティティ(データベースのテーブルの行に対応)
-	entity "../../models/entity"
+	entity "server/models/entity"
 
 	// DBアクセス用モジュール
-	db "../../models/db"
+	db "server/models/db"
 )
 
 // Todoリストの実施状態を定義する

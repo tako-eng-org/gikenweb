@@ -28,35 +28,23 @@ func serve() {
 	router := gin.Default()
 
 	// 静的ファイルのパスを指定
-	//router.Static("/views", "./views")
-	router.Static("/js", "./frontend/dist/js")
-	router.Static("/css", "./frontend/dist/css")
+	router.Static("/dist", "./frontend/dist")
 
 	// ルーターの設定
 	// URLへのアクセスに対して静的ページを返す
-	//router.StaticFS("/todoapp", http.Dir("./views/static"))
-	router.StaticFS("/todoapp", http.Dir("./frontend/dist"))
+	router.StaticFS("/bbsapp", http.Dir("./frontend/dist"))
 
-	// 全てのTodoリスト情報のJSONを返す
-	router.GET("/fetchAllTodos", controller.FetchAllTodos)
+	// 全てのJSONを返す
+	router.GET("/fetchAllRecords", controller.FetchAllRecords)
 
-	// １つのTodoリスト情報の状態のJSONを返す
-	router.GET("/fetchTodo", controller.FindTodo)
-
-	// Todoリスト情報をDBへ登録する
-	router.POST("/addTodo", controller.AddTodo)
-
-	// Todoリスト情報の状態を変更する
-	router.POST("/changeStateTodo", controller.ChangeStateTodo)
-
-	// Todoリスト情報を削除する
-	router.POST("/deleteTodo", controller.DeleteTodo)
+	// 投稿レコード情報をDBへ登録する
+	router.POST("/addRecord", controller.AddRecord)
 
 	router.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"message": "Page not Found!!"})
 	})
 
-	if err := router.Run(":8080"); err != nil {
+	if err := router.Run(":8085"); err != nil {
 		log.Fatal("Server Run Failed.: ", err)
 	}
 

@@ -11,7 +11,7 @@ ARG APP_DIR=app
 COPY ./ /${APP_DIR}
 WORKDIR /${APP_DIR}
 
-EXPOSE 8080
+EXPOSE 8085
 
 ENTRYPOINT [ "/app/docker-entrypoint.sh" ]
 CMD [ "/sbin/init" ]

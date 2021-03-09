@@ -14,12 +14,23 @@ services:
       - ./other-app:/var/www/html/other-app
     depends_on:
       - todo_app
+      - bbs_app
   todo_app:
     build:
       context: ./goApp/TodoApp
-    command: go run server.go
+      # goアプリ側(realize)で処理するため不要
+      # command: go run server.go
     volumes:
       - ./goApp/TodoApp:/app
+    depends_on:
+      - postgres
+  bbs_app:
+    build:
+      context: ./goApp/BbsApp
+      # goアプリ側(realize)で処理するため不要
+      # command: go run server.go
+    volumes:
+      - ./goApp/BbsApp:/app
     depends_on:
       - postgres
   postgres:

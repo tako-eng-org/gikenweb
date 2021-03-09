@@ -4,9 +4,13 @@ express-app/node_modules
 .vscode/
 .idea/
 *__debug_bin
-/goApp/TodoApp/server_todo_app
+/goApp/TodoApp/server
 /goApp/TodoApp/.env
 
 # docker
 docker/postgres/pgdata
 docker/pgadmin/*
+
+# go.modのメタ情報のようなもの
+*go.sum*
+goApp/TodoApp/server

@@ -1,0 +1,51 @@
+# ワークフローの名前
+name: Go
+
+# ワークフローをトリガーするGitHubイベントの名前
+on:
+#  push:
+#    branches: [ master ]
+  pull_request:
+    branches: [ feature/38, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        # Check out for feature/38
+        with:
+          ref: feature/38
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
+
+        # If the repository is private,
+        # $GITHUB_WORKSPACE path will be "/home/runner/work".
+
+      - name: todoApp_go_Build
+        run: |
+          cd $GITHUB_WORKSPACE/goApp/TodoApp
+          go build -v -o $GITHUB_WORKSPACE/goApp/TodoApp
+
+      - name: todoApp_frontend_Build
+        run: |
+          cd $GITHUB_WORKSPACE/goApp/TodoApp/frontend
+          yarn add @vue/cli
+          yarn build
+
+      - name: bbsApp_go_Build
+        run: |
+          cd $GITHUB_WORKSPACE/goApp/BbsApp
+          go build -v -o $GITHUB_WORKSPACE/goApp/BbsApp
+
+      - name: bbsApp_frontend_Build
+        run: |
+          cd $GITHUB_WORKSPACE/goApp/BbsApp/frontend
+          yarn add nuxt
+          yarn generate
+
+#      - name: Test
+#        run: go test -v ./...
