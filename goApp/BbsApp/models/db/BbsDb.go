@@ -3,7 +3,6 @@ package db
 import (
 	// フォーマットI/O
 	"fmt"
-
 	// osI/O
 	"os"
 
@@ -66,10 +65,18 @@ func FindAllRecords() []entity.Bbs {
 
 	db := open()
 	// select
-	db.Order("Id asc").Find(&bbsRecords)
+	db.Order("post_id asc").Find(&bbsRecords)
 
 	// defer 関数がreturnする時に実行される
 	defer db.Close()
 
 	return bbsRecords
+}
+
+// Todoリストテーブルにレコードを登録する
+func InsertRecord(registerRecord *entity.Bbs) {
+	db := open()
+	// insert
+	db.Create(&registerRecord)
+	defer db.Close()
 }
