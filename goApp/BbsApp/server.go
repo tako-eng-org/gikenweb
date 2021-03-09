@@ -37,6 +37,9 @@ func serve() {
 	// 全てのJSONを返す
 	router.GET("/fetchAllRecords", controller.FetchAllRecords)
 
+	// 投稿レコード情報をDBへ登録する
+	router.POST("/addRecord", controller.AddRecord)
+
 	router.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"message": "Page not Found!!"})
 	})
