@@ -11,7 +11,7 @@ server {
     #access_log  /var/log/nginx/host.access.log  main;
 
     location / {
-        root   /home/ec2-user/gitrepos/gikenweb/static;
+        root   /var/www/html/static;
         index  index.html index.htm;
     }
 
